@@ -26,5 +26,5 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/card1_content" />
+        layout="@layout/card1_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

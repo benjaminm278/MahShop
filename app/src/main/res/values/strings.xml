@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MahShop</string>
+    <string name="name">[Name]</string>
+    <string name="price">[Price]</string>
+    <string name="description">[Description]</string>
+    <string name="quantity_label">Quantity:</string>
+    <string name="minus_symbol">-</string>
+    <string name="plus_symbol">+</string>
+    <string name="subtotal_label">Subtotal:</string>
+    <string name="subtotal">[subtotal]</string>
+    <string name="quantity_default_value">0</string>
 </resources>
