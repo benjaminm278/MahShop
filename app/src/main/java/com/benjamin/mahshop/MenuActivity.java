@@ -15,22 +15,10 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MenuActivity extends AppCompatActivity {
-    private int[] quantity;
-    private int numberOfCards;
-    private ConstraintLayout parentOfCards;
-    private final String INCREASE_LETTER_CODE = "i";
-    private final String DECREASE_LETTER_CODE = "d";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        // Retrieves quantity text
-        parentOfCards = findViewById(R.id.constraintLayoutCards);
-        numberOfCards = parentOfCards.getChildCount();
-
-        quantity = new int[numberOfCards];
       }
 
     /**
@@ -62,16 +50,16 @@ public class MenuActivity extends AppCompatActivity {
         if (view.getId() == findViewById(R.id.decrement_button).getId()) {
             // Decrease quantity only if quantity > 0
             if (quantity > 0) {
-                //quantity[number - 1]--;
-                updateQuantityDisplay(quantity - 1, quantityTxt);
-                updatePriceDisplay(quantity - 1, priceTxt, subtotalTxt);
+                quantity--;
+                updateQuantityDisplay(quantity, quantityTxt);
+                updatePriceDisplay(quantity, priceTxt, subtotalTxt);
             }
         }
         else if (view.getId() == findViewById(R.id.increment_button).getId()) {
             // Increase quantity
-            //quantity[number - 1]++;
-            updateQuantityDisplay(quantity + 1, quantityTxt);
-            updatePriceDisplay(quantity + 1, priceTxt, subtotalTxt);
+            quantity++;
+            updateQuantityDisplay(quantity, quantityTxt);
+            updatePriceDisplay(quantity, priceTxt, subtotalTxt);
         }
     }
 
@@ -83,19 +71,17 @@ public class MenuActivity extends AppCompatActivity {
         txt.setText(a);
     }
 
+    /**
+     * Computes new subtotal
+     * @param quantity
+     * @param txt
+     * @param subtotalTxt
+     */
     private void updatePriceDisplay(int quantity, TextView txt, TextView subtotalTxt) {
-        // Retrieve price
-        String k = txt.getText().toString();
-
-        // Break it up
-        String priceStr = k.substring(1);
-
-        // Doubles
-        double price = Double.parseDouble(priceStr);
-
-        // Compute
-        double subtotal = price * quantity;
-
-        subtotalTxt.setText("$" + subtotal);
+        String k = txt.getText().toString(); // Retrieve price
+        String priceStr = k.substring(1); // Break it up
+        double price = Double.parseDouble(priceStr); // Converts to double
+        double subtotal = price * quantity; // Compute
+        subtotalTxt.setText("$" + subtotal); // Display
     }
 }
