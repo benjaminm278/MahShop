@@ -6,7 +6,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MenuActivity extends AppCompatActivity {
     private int[] quantity;
@@ -54,21 +57,24 @@ public class MenuActivity extends AppCompatActivity {
             // Decrease quantity only if quantity > 0
             if (quantity[number - 1] > 0) {
                 quantity[number - 1]--;
-                updateQuantityDisplay(number - 1);
+                updateQuantityDisplay(number - 1, view);
             }
         }
         else if (u.equals(INCREASE)) {
             // Increase quantity
             quantity[number - 1]++;
-            updateQuantityDisplay(number - 1);
+            updateQuantityDisplay(number - 1, view);
         }
     }
 
     /**
      * Updates quantity display
      */
-    private void updateQuantityDisplay(int currentCardIndex) {
+    private void updateQuantityDisplay(int currentCardIndex, View view) {
+        View v = (View) view.getParent();
+        TextView tx = v.findViewWithTag("q1");
         String newNumber = Integer.toString(quantity[currentCardIndex]);
         quantityText.setText(newNumber);
+        tx.setText(newNumber);
     }
 }
