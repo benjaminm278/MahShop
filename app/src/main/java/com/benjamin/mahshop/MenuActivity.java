@@ -6,9 +6,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewManager;
-import android.view.ViewParent;
 import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
@@ -16,6 +13,8 @@ public class MenuActivity extends AppCompatActivity {
     private int numberOfCards;
     private TextView quantityText;
     private ConstraintLayout parentOfCards;
+    private final String INCREASE = "i";
+    private final String DECREASE = "d";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,13 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         // Retrieves quantity text
-        quantityText = findViewById(R.id.quantity_text);
+        quantityText = findViewById(R.id.quantity_text1);
         parentOfCards = findViewById(R.id.constraintLayoutCards);
         numberOfCards = parentOfCards.getChildCount();
         quantity = new int[numberOfCards];
+
+        // Hardcode stuff
+
         /*
         ConstraintLayout cl = findViewById(R.id.constraintLayoutCards);
         int f = cl.getChildCount();
@@ -38,24 +40,28 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void changeQuantity(View view) {
-        int currentCardIndex = parentOfCards.indexOfChild(view); // Retrieve index from parent
-        Log.d("IndexCard", Integer.toString(currentCardIndex));
-        // Get type of button pushed
-        /*int quantityButton = view.getId();
+        // Get tag of button
+        String s = (String) view.getTag();
+        String t = s.replaceAll("\\D+", "");
+        String u = s.replaceAll("^[a-zA-Z]", "");
+        int number = Integer.parseInt(t);
+        Log.d("abc", t);
+
+        //int quantityButton = view.getId();
 
         // Check for type of button
-        if (quantityButton == R.id.decrement_button) {
+        if (u.equals(DECREASE)) {
             // Decrease quantity only if quantity > 0
-            if (quantity[currentCardIndex] > 0) {
-                quantity[currentCardIndex]--;
-                updateQuantityDisplay(currentCardIndex);
+            if (quantity[number - 1] > 0) {
+                quantity[number - 1]--;
+                updateQuantityDisplay(number - 1);
             }
         }
-        else if (quantityButton == R.id.increment_button) {
+        else if (u.equals(INCREASE)) {
             // Increase quantity
-            quantity[currentCardIndex]++;
-            updateQuantityDisplay(currentCardIndex);
-        }*/
+            quantity[number - 1]++;
+            updateQuantityDisplay(number - 1);
+        }
     }
 
     /**
