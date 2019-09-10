@@ -29,11 +29,21 @@ public class MenuActivity extends AppCompatActivity {
             // Decrease quantity only if quantity > 0
             if (quantity > 0) {
                 quantity--;
+                updateQuantityDisplay();
             }
         }
         else {
             // Increase quantity
             quantity++;
+            updateQuantityDisplay();
         }
+    }
+
+    /**
+     * Updates quantity display
+     */
+    private void updateQuantityDisplay() {
+        String newNumber = Integer.toString(quantity);
+        quantityText.setText(newNumber);
     }
 }
