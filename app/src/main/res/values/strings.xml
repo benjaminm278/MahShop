@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MahShop</string>
     <string name="name">[Name]</string>
-    <string name="price">[Price]</string>
+    <string name="price1">$15.99</string>
     <string name="description">[Description]</string>
     <string name="quantity_label">Quantity:</string>
     <string name="minus_symbol">-</string>

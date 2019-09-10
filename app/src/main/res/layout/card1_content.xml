@@ -51,7 +51,8 @@
                     android:layout_marginEnd="18dp"
                     android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/name_text"
-                    android:text="@string/price"
+                    android:tag="p1"
+                    android:text="@string/price1"
                     android:textAlignment="textEnd" />
 
                 <TextView
@@ -77,7 +78,7 @@
                     android:text="@string/quantity_label" />
 
                 <Button
-                    android:id="@+id/decrement_button1"
+                    android:id="@+id/decrement_button"
                     android:layout_width="45dp"
                     android:layout_height="32dp"
                     android:layout_below="@+id/quantity_label"
@@ -93,11 +94,11 @@
                     android:layout_width="45dp"
                     android:layout_height="32dp"
                     android:layout_below="@+id/quantity_label"
-                    android:layout_alignBottom="@+id/decrement_button1"
+                    android:layout_alignBottom="@+id/decrement_button"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="0dp"
-                    android:layout_toEndOf="@+id/decrement_button1"
+                    android:layout_toEndOf="@+id/decrement_button"
                     android:onClick="changeQuantity"
                     android:tag="i1"
                     android:text="@string/plus_symbol" />
@@ -111,7 +112,7 @@
                     android:layout_marginStart="113dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginBottom="-1dp"
-                    android:layout_toEndOf="@+id/quantity_text1"
+                    android:layout_toEndOf="@+id/quantity_text"
                     android:text="@string/subtotal_label" />
 
                 <TextView
@@ -130,7 +131,7 @@
                     android:textAlignment="textEnd" />
 
                 <TextView
-                    android:id="@+id/quantity_text1"
+                    android:id="@+id/quantity_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/quantity_label"
