@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MenuActivity extends AppCompatActivity {
     private int quantity;
     private TextView quantityText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +24,16 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void changeQuantity(View view) {
+        // Check for type of button
+        if (view.getId() == R.id.decrement_button) {
+            // Decrease quantity only if quantity > 0
+            if (quantity > 0) {
+                quantity--;
+            }
+        }
+        else {
+            // Increase quantity
+            quantity++;
+        }
     }
 }
