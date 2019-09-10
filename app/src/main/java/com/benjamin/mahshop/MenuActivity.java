@@ -1,9 +1,14 @@
 package com.benjamin.mahshop;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewManager;
+import android.view.ViewParent;
 import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
@@ -17,6 +22,10 @@ public class MenuActivity extends AppCompatActivity {
 
         // Retrieves quantity text
         quantityText = findViewById(R.id.quantity_text);
+
+        ConstraintLayout cl = findViewById(R.id.constraintLayoutCards);
+        int f = cl.getChildCount();
+        Log.d("child", Integer.toString(f));
     }
 
     /**
@@ -32,7 +41,7 @@ public class MenuActivity extends AppCompatActivity {
                 updateQuantityDisplay();
             }
         }
-        else {
+        else if (view.getId() == R.id.increment_button) {
             // Increase quantity
             quantity++;
             updateQuantityDisplay();
