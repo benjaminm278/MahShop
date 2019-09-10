@@ -26,24 +26,13 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void changeQuantity(View view) {
-        // Get tag of button
-        String s = (String) view.getTag();
-        Log.d("String s", s);
-
-        // Check for type of button
-        String btnCode = Character.toString(s.charAt(0));
-        //int number = Integer.parseInt(Character.toString(s.charAt(1)));
-
         // Get references
         View x = (View) view.getParent();
         TextView quantityTxt = x.findViewById(R.id.quantity_text);
         TextView priceTxt = x.findViewById(R.id.price_text);
         TextView subtotalTxt = x.findViewById(R.id.subtotal_text);
 
-        //TextView txt = (TextView) x.findViewWithTag("q" + number);
-        //TextView txt2 = (TextView) x.findViewWithTag("p" + number);
-        //TextView txt3 = (TextView) x.findViewWithTag("sb" + number);
-
+        // Retrieve quantity
         String currentQuantityStr = quantityTxt.getText().toString();
         int quantity = Integer.parseInt(currentQuantityStr);
 
