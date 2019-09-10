@@ -6,7 +6,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -45,36 +47,37 @@ public class MenuActivity extends AppCompatActivity {
     public void changeQuantity(View view) {
         // Get tag of button
         String s = (String) view.getTag();
-        String t = s.replaceAll("\\D+", "");
-        String u = s.replaceAll("^[a-zA-Z]", "");
-        int number = Integer.parseInt(t);
-        Log.d("abc", t);
-
-        //int quantityButton = view.getId();
+        Log.d("String s", s);
 
         // Check for type of button
-        if (u.equals(DECREASE)) {
+        String btnCode = Character.toString(s.charAt(0));
+        int number = Integer.parseInt(Character.toString(s.charAt(1)));
+
+        if (btnCode.equals(DECREASE)) {
             // Decrease quantity only if quantity > 0
             if (quantity[number - 1] > 0) {
                 quantity[number - 1]--;
-                updateQuantityDisplay(number - 1, view);
+                updateQuantityDisplay(quantity[number - 1], number, view);
             }
         }
-        else if (u.equals(INCREASE)) {
+        else if (btnCode.equals(INCREASE)) {
             // Increase quantity
             quantity[number - 1]++;
-            updateQuantityDisplay(number - 1, view);
+            updateQuantityDisplay(quantity[number - 1], number, view);
         }
     }
 
     /**
      * Updates quantity display
      */
-    private void updateQuantityDisplay(int currentCardIndex, View view) {
-        View v = (View) view.getParent();
-        TextView tx = v.findViewWithTag("q1");
-        String newNumber = Integer.toString(quantity[currentCardIndex]);
-        quantityText.setText(newNumber);
-        tx.setText(newNumber);
+    private void updateQuantityDisplay(int newQuantity, int number, View view) {
+        View x = (View) view.getParent();
+        TextView txt = (TextView) x.findViewWithTag("q" + number);
+        /*
+        View v = (View) view.getRootView();
+        TextView tx = v.findViewWithTag("q1");*/
+        String a = Integer.toString(newQuantity);
+        txt.setText(a);
+        //tx.setText(newNumber);
     }
 }
