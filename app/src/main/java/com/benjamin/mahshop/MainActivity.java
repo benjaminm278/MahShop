@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Starts menu
+     * Starts menu app
      * @param view
      */
     public void beginApp(View view) {

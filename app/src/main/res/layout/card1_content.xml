@@ -84,6 +84,7 @@
                     android:layout_alignStart="@+id/name_text"
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="3dp"
+                    android:onClick="changeQuantity"
                     android:text="-" />
 
                 <Button
@@ -96,6 +97,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/decrement_button"
+                    android:onClick="changeQuantity"
                     android:text="+" />
 
                 <TextView
