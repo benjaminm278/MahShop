@@ -3,6 +3,7 @@ package com.benjamin.mahshop;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,5 +73,15 @@ public class MenuActivity extends AppCompatActivity {
         double price = Double.parseDouble(priceStr); // Converts to double
         double subtotal = price * quantity; // Compute
         subtotalTxt.setText("$" + subtotal); // Display
+    }
+
+    /**
+     * Opens a new instance of checkout
+     * @param view
+     */
+    public void startCheckoutActivity(View view) {
+        // Open new checkout activity
+        Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
+        startActivity(checkoutActivity);
     }
 }
