@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,14 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MenuActivity extends AppCompatActivity {
+    private shopCart cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        // Create new shopping cart
+        cart = new shopCart();
       }
 
     /**
@@ -82,6 +87,7 @@ public class MenuActivity extends AppCompatActivity {
     public void startCheckoutActivity(View view) {
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
+        //checkoutActivity.putExtra("", (Parcelable) shopCart);
         startActivity(checkoutActivity);
     }
 }
