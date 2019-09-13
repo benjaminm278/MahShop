@@ -2,6 +2,8 @@ package com.benjamin.mahshop;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class shopCart implements Parcelable {
@@ -13,7 +15,7 @@ public class shopCart implements Parcelable {
      */
     public shopCart() {
         this.grandSubtotal = 0;
-        items = new ArrayList<Item>();
+        items = new ArrayList<>();
     }
 
     /**
@@ -55,6 +57,13 @@ public class shopCart implements Parcelable {
     protected shopCart(Parcel in) {
         grandSubtotal = in.readDouble();
         items = in.readArrayList(Item.class.getClassLoader());
+        items = in.createTypedArrayList(Item.CREATOR);
+        try {
+            Log.d("Here SC", "Str: " + items.get(0).getName());
+        }
+        catch (Exception e) {
+            Log.d("The U", "asdsklajdklasd");
+        }
     }
 
     public static final Creator<shopCart> CREATOR = new Creator<shopCart>() {

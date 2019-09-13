@@ -40,7 +40,12 @@ public class CheckoutActivity extends AppCompatActivity {
         // Retrieve all necessary variables
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
-        shopCart s = menuIntent.getParcelableExtra(MenuActivity.EXTRA_CART);
-        Toast.makeText(this, s.getItemString(0), Toast.LENGTH_LONG).show();
+        shopCart s = menuIntent.getParcelableExtra(CheckoutActivity.EXTRA_CART);
+        try {
+            Toast.makeText(this, s.getItemString(0), Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e) {
+            Log.d("Wtfman", "" + s);
+        }
     }
 }
