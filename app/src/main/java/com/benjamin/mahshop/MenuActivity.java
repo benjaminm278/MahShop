@@ -1,24 +1,16 @@
 package com.benjamin.mahshop;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
     private shopCart cart;
-    private static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
+    public static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +31,8 @@ public class MenuActivity extends AppCompatActivity {
         TextView quantityTxt = x.findViewById(R.id.quantity_text);
         TextView priceTxt = x.findViewById(R.id.price_text);
         TextView subtotalTxt = x.findViewById(R.id.subtotal_text);
+        TextView nameTxt = x.findViewById(R.id.name_text);
+
 
         // Retrieve quantity
         String currentQuantityStr = quantityTxt.getText().toString();
@@ -50,6 +44,14 @@ public class MenuActivity extends AppCompatActivity {
                 quantity--;
                 updateQuantityDisplay(quantity, quantityTxt);
                 updatePriceDisplay(quantity, priceTxt, subtotalTxt);
+
+                String k = priceTxt.getText().toString(); // Retrieve price
+                String priceStr = k.substring(1); // Break it up
+                double price = Double.parseDouble(priceStr); // Converts to double
+
+                // Adds cart item
+                cart.addItem(nameTxt.getText().toString(), price, quantity);
+                Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
             }
         }
         else if (view.getId() == findViewById(R.id.increment_button).getId()) {
@@ -57,6 +59,7 @@ public class MenuActivity extends AppCompatActivity {
             quantity++;
             updateQuantityDisplay(quantity, quantityTxt);
             updatePriceDisplay(quantity, priceTxt, subtotalTxt);
+
         }
     }
 
@@ -89,7 +92,7 @@ public class MenuActivity extends AppCompatActivity {
     public void startCheckoutActivity(View view) {
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
-        checkoutActivity.putExtra(EXTRA_CART, (Parcelable) cart);
+        checkoutActivity.putExtra(EXTRA_CART, cart);
         startActivity(checkoutActivity);
     }
 }
