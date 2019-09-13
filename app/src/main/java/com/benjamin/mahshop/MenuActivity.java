@@ -18,6 +18,8 @@ import org.w3c.dom.Text;
 
 public class MenuActivity extends AppCompatActivity {
     private shopCart cart;
+    private static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +89,7 @@ public class MenuActivity extends AppCompatActivity {
     public void startCheckoutActivity(View view) {
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
-        //checkoutActivity.putExtra("", (Parcelable) shopCart);
+        checkoutActivity.putExtra(EXTRA_CART, (Parcelable) cart);
         startActivity(checkoutActivity);
     }
 }
