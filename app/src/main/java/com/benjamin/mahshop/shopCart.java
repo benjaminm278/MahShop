@@ -2,21 +2,18 @@ package com.benjamin.mahshop;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.ArrayList;
 
 public class shopCart implements Parcelable {
     private double grandSubtotal;
     private ArrayList<Item> items;
 
-    private String delimiter = "-";
-
     /**
      * Creates a new shopping cart object
      */
     public shopCart() {
         this.grandSubtotal = 0;
-        items = new ArrayList<>();
+        items = new ArrayList<Item>();
     }
 
     /**
@@ -55,13 +52,36 @@ public class shopCart implements Parcelable {
         return items.get(index).toString();
     }
 
+    protected shopCart(Parcel in) {
+        grandSubtotal = in.readDouble();
+        items = in.readArrayList(Item.class.getClassLoader());
+    }
+
+    public static final Creator<shopCart> CREATOR = new Creator<shopCart>() {
+        @Override
+        public shopCart createFromParcel(Parcel source) {
+            return new shopCart(source);
+        }
+
+        @Override
+        public shopCart[] newArray(int size) {
+            return new shopCart[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Writes to Parcel
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeDouble(grandSubtotal);
+        dest.writeList(items);
     }
 }
