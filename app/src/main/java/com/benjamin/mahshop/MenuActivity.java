@@ -25,6 +25,7 @@ public class MenuActivity extends AppCompatActivity {
      * Changes the quantity
      * @param view
      */
+
     public void changeQuantity(View view) {
         // Get references
         View x = (View) view.getParent();
@@ -32,6 +33,8 @@ public class MenuActivity extends AppCompatActivity {
         TextView priceTxt = x.findViewById(R.id.price_text);
         TextView subtotalTxt = x.findViewById(R.id.subtotal_text);
         TextView nameTxt = x.findViewById(R.id.name_text);
+        int decrement_button_id = findViewById(R.id.decrement_button).getId();
+        int increment_button_id = findViewById(R.id.increment_button).getId();
 
         // Retrieve important values
         String name = nameTxt.getText().toString();
@@ -42,7 +45,7 @@ public class MenuActivity extends AppCompatActivity {
         String priceStr = priceTxt.getText().toString().substring(1);
         double price = Double.parseDouble(priceStr);
 
-        if (view.getId() == findViewById(R.id.decrement_button).getId()) {
+        if (view.getId() == decrement_button_id) {
             // Decrease quantity only if quantity > 0
             if (quantity > 0) {
                 quantity--;
@@ -56,16 +59,22 @@ public class MenuActivity extends AppCompatActivity {
                 Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
             }
         }
-        else if (view.getId() == findViewById(R.id.increment_button).getId()) {
+        else if (view.getId() == increment_button_id) {
             // Increase quantity
             quantity++;
-            updateQuantityDisplay(quantity, quantityTxt);
+            /*updateDisplays(quantity, quantityTxt,
+                    price, priceTxt,
+                    subtotalTxt);
+            */updateQuantityDisplay(quantity, quantityTxt);
             updatePriceDisplay(quantity, priceTxt, subtotalTxt);
 
             cart.addItem(name, price, quantity);
             Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
         }
     }
+
+    // To be implemented after functionality completion
+    public void updateDisplays() {}
 
     /**
      * Updates quantity display

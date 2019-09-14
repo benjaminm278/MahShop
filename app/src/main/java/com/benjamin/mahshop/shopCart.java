@@ -29,7 +29,6 @@ public class shopCart implements Parcelable {
     public void addItem(String name, double price, int quantity) {
         Item i = new Item(name, price, quantity);
 
-        // Checks if
         if (items.contains(i)) {
             // Item exists
             // Just update quantity
@@ -44,6 +43,12 @@ public class shopCart implements Parcelable {
         Log.d("theTotal", "Q: " + quantity + " " + items.indexOf(i));
     }
 
+    /**
+     *
+     * @param name
+     * @param price
+     * @param quantity
+     */
     public void decreaseItemCount(String name, double price, int quantity) {
         Item i = new Item(name, price, quantity);
 
@@ -73,11 +78,16 @@ public class shopCart implements Parcelable {
      * @return
      */
     public String getItemString(int index) {
+        // Verifies index
         if (index < 0 || index > items.size()) {
             throw new IndexOutOfBoundsException("Invalid index :(");
         }
 
         return items.get(index).toString();
+    }
+
+    public int getNumberOfItems() {
+        return items.size();
     }
 
     protected shopCart(Parcel in) {
