@@ -55,5 +55,22 @@ public class CheckoutActivity extends AppCompatActivity {
         catch (Exception e) {
             Log.d("Wtfman", "$" + s.getTotal());
         }*/
+
+        String[] stuff = s.getItemString(0).split("-");
+
+        // Test code
+        TableRow tr = new TableRow(this);
+        TextView t1 = new TextView(this);
+        TextView t2 = new TextView(this);
+        TextView t3 = new TextView(this);
+
+        t1.setText(stuff[0]);
+        t2.setText(stuff[1]);
+        t3.setText(stuff[2]);
+
+        tr.addView(t1);
+        tr.addView(t2);
+        tr.addView(t3);
+        billLayout.addView(tr);
     }
 }

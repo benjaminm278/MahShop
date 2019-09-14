@@ -45,8 +45,8 @@ public class Item implements Parcelable {
     @Override
     public String toString() {
         return this.name + delimiter
-                + this.price + delimiter
-                + this.quantity;
+                + this.quantity + delimiter
+                + this.price;
     }
 
     protected Item(Parcel in) {
