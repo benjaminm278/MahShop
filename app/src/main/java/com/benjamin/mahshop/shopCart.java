@@ -10,6 +10,8 @@ public class shopCart implements Parcelable {
     private double grandSubtotal;
     private ArrayList<Item> items;
 
+    public double getTotal() { return grandSubtotal;}
+
     /**
      * Creates a new shopping cart object
      */
@@ -25,6 +27,7 @@ public class shopCart implements Parcelable {
      * @param quantity
      */
     public void addItem(String name, double price, int quantity) {
+        /*
         boolean itemExists = false;
         // Iterate through list and check if item exists
         for (Item x : items) {
@@ -38,7 +41,10 @@ public class shopCart implements Parcelable {
 
         if (!itemExists) {
             items.add(new Item(name, price, quantity));
-        }
+        }*/
+        items.add(new Item(name, price, quantity));
+        grandSubtotal += price;
+        Log.d("theTotal", grandSubtotal + "");
     }
 
     /**
@@ -57,13 +63,8 @@ public class shopCart implements Parcelable {
     protected shopCart(Parcel in) {
         grandSubtotal = in.readDouble();
         items = in.readArrayList(Item.class.getClassLoader());
-        items = in.createTypedArrayList(Item.CREATOR);
-        try {
-            Log.d("Here SC", "Str: " + items.get(0).getName());
-        }
-        catch (Exception e) {
-            Log.d("The U", "asdsklajdklasd");
-        }
+        //items = in.readList(items, Item.class.getClassLoader());
+        //items = in.createTypedArrayList(Item.CREATOR);
     }
 
     public static final Creator<shopCart> CREATOR = new Creator<shopCart>() {

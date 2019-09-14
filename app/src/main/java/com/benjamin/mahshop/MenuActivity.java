@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
     private shopCart cart;
-    public static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
+    public static final String EXTRA_CART = "extraCart";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        // Create new shopping cart
+        // Creates a new shopping cart
         cart = new shopCart();
       }
 
@@ -51,6 +51,8 @@ public class MenuActivity extends AppCompatActivity {
 
                 // Adds cart item
                 cart.addItem(nameTxt.getText().toString(), price, quantity);
+
+                // Test code
                 Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
             }
         }
@@ -59,7 +61,6 @@ public class MenuActivity extends AppCompatActivity {
             quantity++;
             updateQuantityDisplay(quantity, quantityTxt);
             updatePriceDisplay(quantity, priceTxt, subtotalTxt);
-
         }
     }
 
@@ -90,9 +91,11 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void startCheckoutActivity(View view) {
+        testClass test = new testClass("Leo");
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
-        checkoutActivity.putExtra(EXTRA_CART, cart);
+        checkoutActivity.putExtra("CART", cart);
+        // checkoutActivity.putExtra("TEST", test);
         startActivity(checkoutActivity);
     }
 }
