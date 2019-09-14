@@ -43,7 +43,7 @@ public class CheckoutActivity extends AppCompatActivity {
         //testClass t = menuIntent.getParcelableExtra("TEST");
         shopCart s = menuIntent.getParcelableExtra("CART");
         try {
-            Log.d("helloTest", s.getTotal() + "");
+            Log.d("helloTest", s.getItemString(0) + "");
         }
         catch (Exception e) {
             Log.d("thissucks", s + "");

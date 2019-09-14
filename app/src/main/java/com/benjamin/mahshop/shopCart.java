@@ -27,24 +27,44 @@ public class shopCart implements Parcelable {
      * @param quantity
      */
     public void addItem(String name, double price, int quantity) {
-        /*
-        boolean itemExists = false;
-        // Iterate through list and check if item exists
-        for (Item x : items) {
-            if (x.getName().equals(name)) {
-                // Update quantity
-                x.setQuantity(quantity);
-                itemExists = true;
-                break;
+        Item i = new Item(name, price, quantity);
+
+        // Checks if
+        if (items.contains(i)) {
+            // Item exists
+            // Just update quantity
+            items.get(items.indexOf(i)).setQuantity(quantity);
+        }
+        else {
+            items.add(new Item(name, price, quantity));
+        }
+
+        grandSubtotal += price;
+
+        Log.d("theTotal", "Q: " + quantity + " " + items.indexOf(i));
+    }
+
+    public void decreaseItemCount(String name, double price, int quantity) {
+        Item i = new Item(name, price, quantity);
+
+        if (items.contains(i)) {
+            // Item exists
+            // Decrease count and price
+            quantity--;
+
+            // Checks quantity
+            if (quantity > 0) {
+                // Item stays in cart
+                items.get(items.indexOf(i)).setQuantity(quantity);
+            }
+            else {
+                // Remove item completely
+                items.remove(i);
             }
         }
 
-        if (!itemExists) {
-            items.add(new Item(name, price, quantity));
-        }*/
-        items.add(new Item(name, price, quantity));
-        grandSubtotal += price;
-        Log.d("theTotal", grandSubtotal + "");
+        grandSubtotal -= price;
+        Log.d("theTotal", quantity + "");
     }
 
     /**
@@ -63,8 +83,6 @@ public class shopCart implements Parcelable {
     protected shopCart(Parcel in) {
         grandSubtotal = in.readDouble();
         items = in.readArrayList(Item.class.getClassLoader());
-        //items = in.readList(items, Item.class.getClassLoader());
-        //items = in.createTypedArrayList(Item.CREATOR);
     }
 
     public static final Creator<shopCart> CREATOR = new Creator<shopCart>() {

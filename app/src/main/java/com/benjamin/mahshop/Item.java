@@ -34,6 +34,10 @@ public class Item implements Parcelable {
         return this.quantity;
     }
 
+    public boolean equals(Object o) {
+        return true;
+    }
+
     /**
      *
      * @return

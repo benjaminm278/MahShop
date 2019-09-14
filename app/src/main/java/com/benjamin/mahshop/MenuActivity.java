@@ -33,10 +33,14 @@ public class MenuActivity extends AppCompatActivity {
         TextView subtotalTxt = x.findViewById(R.id.subtotal_text);
         TextView nameTxt = x.findViewById(R.id.name_text);
 
+        // Retrieve important values
+        String name = nameTxt.getText().toString();
 
-        // Retrieve quantity
         String currentQuantityStr = quantityTxt.getText().toString();
         int quantity = Integer.parseInt(currentQuantityStr);
+
+        String priceStr = priceTxt.getText().toString().substring(1);
+        double price = Double.parseDouble(priceStr);
 
         if (view.getId() == findViewById(R.id.decrement_button).getId()) {
             // Decrease quantity only if quantity > 0
@@ -45,12 +49,8 @@ public class MenuActivity extends AppCompatActivity {
                 updateQuantityDisplay(quantity, quantityTxt);
                 updatePriceDisplay(quantity, priceTxt, subtotalTxt);
 
-                String k = priceTxt.getText().toString(); // Retrieve price
-                String priceStr = k.substring(1); // Break it up
-                double price = Double.parseDouble(priceStr); // Converts to double
-
-                // Adds cart item
-                cart.addItem(nameTxt.getText().toString(), price, quantity);
+                // Decrease quantity of item
+                cart.decreaseItemCount(name, price, quantity);
 
                 // Test code
                 Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
@@ -61,6 +61,9 @@ public class MenuActivity extends AppCompatActivity {
             quantity++;
             updateQuantityDisplay(quantity, quantityTxt);
             updatePriceDisplay(quantity, priceTxt, subtotalTxt);
+
+            cart.addItem(name, price, quantity);
+            Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
         }
     }
 
