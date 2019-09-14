@@ -7,6 +7,7 @@ public class Item implements Parcelable {
     private String name;
     private double price;
     private int quantity;
+    private double subTotal;
 
     private char delimiter = '-';
 
@@ -14,11 +15,13 @@ public class Item implements Parcelable {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.subTotal = price * quantity;
     }
 
     public void setQuantity(int quantity) {
         if (quantity > 0) {
             this.quantity = quantity;
+            subTotal = price * quantity;
         }
     }
 
@@ -45,14 +48,16 @@ public class Item implements Parcelable {
     @Override
     public String toString() {
         return this.name + delimiter
+                + this.price + delimiter
                 + this.quantity + delimiter
-                + this.price;
+                + this.subTotal;
     }
 
     protected Item(Parcel in) {
         name = in.readString();
         price = in.readDouble();
         quantity = in.readInt();
+        subTotal = in.readDouble();
     }
 
     public static final Creator<Item> CREATOR = new Creator<Item>() {
@@ -77,5 +82,6 @@ public class Item implements Parcelable {
         dest.writeString(name);
         dest.writeDouble(price);
         dest.writeInt(quantity);
+        dest.writeDouble(subTotal);
     }
 }

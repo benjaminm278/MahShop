@@ -21,7 +21,7 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
 
         // Test code
-        TableLayout t = findViewById(R.id.billTable);
+/*        TableLayout t = findViewById(R.id.billTable);
         TableRow tr = new TableRow(this);
         TextView txt = new TextView(this);
         txt.setText("1");
@@ -31,7 +31,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }
         catch (Exception e) {
             Log.d("Exception err", e.getMessage());
-        }
+        }*/
 
         writeBill();
     }
@@ -63,14 +63,17 @@ public class CheckoutActivity extends AppCompatActivity {
         TextView t1 = new TextView(this);
         TextView t2 = new TextView(this);
         TextView t3 = new TextView(this);
+        TextView t4 = new TextView(this);
 
         t1.setText(stuff[0]);
         t2.setText(stuff[1]);
         t3.setText(stuff[2]);
+        t4.setText(stuff[3]);
 
         tr.addView(t1);
         tr.addView(t2);
         tr.addView(t3);
+        tr.addView(t4);
         billLayout.addView(tr);
     }
 }
