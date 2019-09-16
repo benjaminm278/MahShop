@@ -10,15 +10,29 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class CheckoutActivity extends AppCompatActivity {
     private static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
     private TableLayout billLayout;
     private Intent menuIntent;
+    private shopCart s;
+    private final double TPS_RATE = 0.05;
+    private final double TPQ_RATE = 0.09975;
+    private String dollarSign;
+
+    private double tps;
+    private double tpq;
+    private double total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+        menuIntent = getIntent();
+        s = menuIntent.getParcelableExtra("CART");
+        dollarSign = getResources().getString(R.string.dollar_sign);
 
         // Test code
 /*        TableLayout t = findViewById(R.id.billTable);
@@ -81,12 +95,44 @@ public class CheckoutActivity extends AppCompatActivity {
     public void fillAmounts() {
         // Get data
         menuIntent = getIntent();
-        shopCart s = menuIntent.getParcelableExtra("CART");
 
+        setSubtotal();
+        setTPSamount();
+        setTPQamount();
+        setGrandTotal();
+    }
+
+    private void setSubtotal() {
         // References
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
 
-        // Put subtotal in subtotal field
-        subTotalTxt.setText("$49.97");
+        subTotalTxt.setText(dollarSign + " " + s.getTotal());
+    }
+
+    private void setTPSamount() {
+        // Variables
+        TextView tpsTxt = findViewById(R.id.tps_textView);
+        DecimalFormat df = new DecimalFormat("##.00");
+        //tps = Math.round(s.getTotal() * TPS_RATE, 2);
+        df.format(s.getTotal() * TPS_RATE);
+
+        //tpsTxt.setText(dollarSign + " " + tps);
+        tpsTxt.setText(df.format(s.getTotal() * TPS_RATE));
+    }
+
+    private void setTPQamount() {
+        // Variables
+        TextView tpsTxt = findViewById(R.id.tpq_textView);
+        tpq = Math.round((s.getTotal() * TPQ_RATE) * 100) / 10;
+
+        tpsTxt.setText(dollarSign + " " + tpq);
+    }
+
+    private void setGrandTotal() {
+        // Variables
+        TextView tpsTxt = findViewById(R.id.total_textview);
+        total = Math.round((s.getTotal() + tps + tpq) * 100) / 100;
+
+        tpsTxt.setText(dollarSign + " " + total);
     }
 }

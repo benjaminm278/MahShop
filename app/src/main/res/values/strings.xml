@@ -19,4 +19,6 @@
     <string name="checkout">Checkout</string>
     <string name="default_price_value">$0.00</string>
     <string name="dollar_sign">$</string>
+    <string name="tps_rate">0.05</string>
+    <string name="tpq_rate">0.09975</string>
 </resources>
