@@ -108,28 +108,28 @@ public class CheckoutActivity extends AppCompatActivity {
     private void setSubtotal() {
         // References
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
-        subtotal = Double.parseDouble(df.format(dollarSign + " " + s.getTotal()));
+        subtotal = Double.parseDouble(df.format(s.getTotal()));
         subTotalTxt.setText(dollarSign + " " + subtotal);
     }
 
     private void setTPSamount() {
         // Variables
         TextView tpsTxt = findViewById(R.id.tps_textView);
-        tps = Double.parseDouble(df.format(s.getTotal() * TPS_RATE));
+        tps = Double.parseDouble(df.format(subtotal * TPS_RATE));
         tpsTxt.setText(dollarSign + " " + tps);
     }
 
     private void setTPQamount() {
         // Variables
         TextView tpsTxt = findViewById(R.id.tpq_textView);
-        tpq = Double.parseDouble(df.format((s.getTotal() * TPQ_RATE)));
+        tpq = Double.parseDouble(df.format(subtotal * TPQ_RATE));
         tpsTxt.setText(dollarSign + " " + tpq);
     }
 
     private void setGrandTotal() {
         // Variables
         TextView tpsTxt = findViewById(R.id.total_textview);
-        total = Double.parseDouble(df.format((s.getTotal() + tps + tpq)));
+        total = Double.parseDouble(df.format(subtotal + tps + tpq));
         tpsTxt.setText(dollarSign + " " + total);
     }
 }
