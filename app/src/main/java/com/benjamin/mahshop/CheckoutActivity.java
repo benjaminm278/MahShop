@@ -21,9 +21,12 @@ public class CheckoutActivity extends AppCompatActivity {
     private final double TPQ_RATE = 0.09975;
     private String dollarSign;
 
+    private double subtotal;
     private double tps;
     private double tpq;
     private double total;
+
+    private DecimalFormat df = new DecimalFormat("##.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,34 +108,28 @@ public class CheckoutActivity extends AppCompatActivity {
     private void setSubtotal() {
         // References
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
-
-        subTotalTxt.setText(dollarSign + " " + s.getTotal());
+        subtotal = Double.parseDouble(df.format(dollarSign + " " + s.getTotal()));
+        subTotalTxt.setText(dollarSign + " " + subtotal);
     }
 
     private void setTPSamount() {
         // Variables
         TextView tpsTxt = findViewById(R.id.tps_textView);
-        DecimalFormat df = new DecimalFormat("##.00");
-        //tps = Math.round(s.getTotal() * TPS_RATE, 2);
-        df.format(s.getTotal() * TPS_RATE);
-
-        //tpsTxt.setText(dollarSign + " " + tps);
-        tpsTxt.setText(df.format(s.getTotal() * TPS_RATE));
+        tps = Double.parseDouble(df.format(s.getTotal() * TPS_RATE));
+        tpsTxt.setText(dollarSign + " " + tps);
     }
 
     private void setTPQamount() {
         // Variables
         TextView tpsTxt = findViewById(R.id.tpq_textView);
-        tpq = Math.round((s.getTotal() * TPQ_RATE) * 100) / 10;
-
+        tpq = Double.parseDouble(df.format((s.getTotal() * TPQ_RATE)));
         tpsTxt.setText(dollarSign + " " + tpq);
     }
 
     private void setGrandTotal() {
         // Variables
         TextView tpsTxt = findViewById(R.id.total_textview);
-        total = Math.round((s.getTotal() + tps + tpq) * 100) / 100;
-
+        total = Double.parseDouble(df.format((s.getTotal() + tps + tpq)));
         tpsTxt.setText(dollarSign + " " + total);
     }
 }
