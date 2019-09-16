@@ -3,6 +3,7 @@ package com.benjamin.mahshop;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private shopCart s;
     private final double TPS_RATE = 0.05;
     private final double TPQ_RATE = 0.09975;
-    private String dollarSign;
+    private String dollarSign = "$";
 
     private double subtotal;
     private double tps;
@@ -35,20 +36,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
         menuIntent = getIntent();
         s = menuIntent.getParcelableExtra("CART");
-        dollarSign = getResources().getString(R.string.dollar_sign);
-
-        // Test code
-/*        TableLayout t = findViewById(R.id.billTable);
-        TableRow tr = new TableRow(this);
-        TextView txt = new TextView(this);
-        txt.setText("1");
-        tr.addView(txt);
-        try {
-            t.addView(tr);
-        }
-        catch (Exception e) {
-            Log.d("Exception err", e.getMessage());
-        }*/
 
         writeBill();
         fillAmounts();
@@ -58,41 +45,28 @@ public class CheckoutActivity extends AppCompatActivity {
         // Retrieve all necessary variables
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
-        //testClass t = menuIntent.getParcelableExtra("TEST");
-        shopCart s = menuIntent.getParcelableExtra("CART");
-        try {
-            Log.d("helloTest", s.getItemString(0) + "");
+
+        for (int i = 0; i < s.getNumberOfItems(); i++) {
+            String[] stuff = s.getItemString(i).split("-");
+
+            TableRow tr = new TableRow(this);
+            TextView t1 = new TextView(this);
+            TextView t2 = new TextView(this);
+            TextView t3 = new TextView(this);
+            TextView t4 = new TextView(this);
+
+            t1.setText(stuff[0]);
+            t2.setText(stuff[1]);
+            t3.setText(stuff[2]);
+            t4.setText(stuff[3]);
+
+            tr.addView(t1);
+            tr.addView(t2);
+            tr.addView(t3);
+            tr.addView(t4);
+
+            billLayout.addView(tr);
         }
-        catch (Exception e) {
-            Log.d("thissucks", s + "");
-        }
-        /*shopCart s = menuIntent.getParcelableExtra("CART");
-        try {
-            Toast.makeText(this, s.getItemString(0) + "", Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e) {
-            Log.d("Wtfman", "$" + s.getTotal());
-        }*/
-
-        String[] stuff = s.getItemString(0).split("-");
-
-        // Test code
-        TableRow tr = new TableRow(this);
-        TextView t1 = new TextView(this);
-        TextView t2 = new TextView(this);
-        TextView t3 = new TextView(this);
-        TextView t4 = new TextView(this);
-
-        t1.setText(stuff[0]);
-        t2.setText(stuff[1]);
-        t3.setText(stuff[2]);
-        t4.setText(stuff[3]);
-
-        tr.addView(t1);
-        tr.addView(t2);
-        tr.addView(t3);
-        tr.addView(t4);
-        billLayout.addView(tr);
     }
 
     public void fillAmounts() {
@@ -131,5 +105,14 @@ public class CheckoutActivity extends AppCompatActivity {
         TextView tpsTxt = findViewById(R.id.total_textview);
         total = Double.parseDouble(df.format(subtotal + tps + tpq));
         tpsTxt.setText(dollarSign + " " + total);
+    }
+
+    public void launchEndActivity(View view) {
+        Intent finalActivity = new Intent(this, endOfCheckoutActivity.class);
+        startActivity(finalActivity);
+    }
+
+    public void launchPreviousActivity(View view) {
+        finish();
     }
 }
