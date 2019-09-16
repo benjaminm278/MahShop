@@ -28,6 +28,23 @@ public class shopCart implements Parcelable {
      */
     public void addItem(String name, double price, int quantity) {
         Item i = new Item(name, price, quantity);
+  /*
+        boolean itemExists = false;
+        for (int j = 0; j < items.size(); j++) {
+            // Same items
+            if (i.getName().equals(items.get(j).getName())) {
+                int newQuantity = quantity + 1;
+                items.get(j).setQuantity(newQuantity);
+                itemExists = true;
+                break;
+            }
+        }
+
+        if (!itemExists) {
+            items.add(new Item(name, price, quantity));
+        }
+*/
+        quantity++;
 
         if (items.contains(i)) {
             // Item exists
@@ -52,6 +69,21 @@ public class shopCart implements Parcelable {
     public void decreaseItemCount(String name, double price, int quantity) {
         Item i = new Item(name, price, quantity);
 
+        /*
+        for (int j = 0; j < items.size(); j++) {
+            // Same items
+            if (i.getName().equals(items.get(j).getName())) {
+                int newQuantity = quantity - 1;
+                items.get(j).setQuantity(newQuantity);
+
+                if (items.get(j).getQuantity() <= 0) {
+                    items.remove(items.get(j));
+                    Log.d("Removed", "r");
+                }
+                break;
+            }
+        }*/
+
         if (items.contains(i)) {
             // Item exists
             // Decrease count and price
@@ -63,8 +95,14 @@ public class shopCart implements Parcelable {
                 items.get(items.indexOf(i)).setQuantity(quantity);
             }
             else {
-                // Remove item completely
-                //items.remove(i);
+                Log.d("Empty", "ind: " + items.get(0));
+                try {
+                    items.remove(i);
+                    Log.d("It was s", "worked");
+                }
+                catch (Exception e) {
+
+                }
             }
         }
 

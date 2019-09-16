@@ -40,36 +40,42 @@ public class MenuActivity extends AppCompatActivity {
         String name = nameTxt.getText().toString();
 
         String currentQuantityStr = quantityTxt.getText().toString();
-        int quantity = Integer.parseInt(currentQuantityStr);
+        int currentQuantity = Integer.parseInt(currentQuantityStr);
 
         String priceStr = priceTxt.getText().toString().substring(1);
         double price = Double.parseDouble(priceStr);
 
         if (view.getId() == decrement_button_id) {
             // Decrease quantity only if quantity > 0
-            if (quantity > 0) {
+            if (currentQuantity > 0) {
                 //quantity--;
-                cart.decreaseItemCount(name, price, quantity);
-                updateQuantityDisplay(quantity - 1, quantityTxt);
-                updatePriceDisplay(quantity - 1, priceTxt, subtotalTxt);
+                cart.decreaseItemCount(name, price, currentQuantity);
+                updateQuantityDisplay(currentQuantity - 1, quantityTxt);
+                updatePriceDisplay(currentQuantity - 1, priceTxt, subtotalTxt);
 
                 // Decrease quantity of item
                 //cart.decreaseItemCount(name, price, quantity);
 
                 // Test code
-                Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
+                try {
+                    Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e) {
+                    Toast.makeText(this, "Item doesn't exist", Toast.LENGTH_SHORT).show();
+                }
             }
         }
         else if (view.getId() == increment_button_id) {
             // Increase quantity
-            quantity++;
+            //quantity++;
             /*updateDisplays(quantity, quantityTxt,
                     price, priceTxt,
                     subtotalTxt);
-            */updateQuantityDisplay(quantity, quantityTxt);
-            updatePriceDisplay(quantity, priceTxt, subtotalTxt);
+            */
+            cart.addItem(name, price, currentQuantity);
+            updateQuantityDisplay(currentQuantity + 1, quantityTxt);
+            updatePriceDisplay(currentQuantity + 1, priceTxt, subtotalTxt);
 
-            cart.addItem(name, price, quantity);
             Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
         }
     }

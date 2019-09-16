@@ -2,6 +2,7 @@ package com.benjamin.mahshop;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 public class Item implements Parcelable {
     private String name;
@@ -38,6 +39,11 @@ public class Item implements Parcelable {
     }
 
     public boolean equals(Object o) {
+        return true;
+    }
+
+    public boolean contains(Item i) {
+        Log.d("Testing contains", "abc");
         return true;
     }
 
