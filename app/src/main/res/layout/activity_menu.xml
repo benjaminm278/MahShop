@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
     tools:context=".MenuActivity">
 
     <RelativeLayout
@@ -72,6 +73,18 @@
                 app:layout_constraintEnd_toEndOf="@+id/include1"
                 app:layout_constraintStart_toStartOf="@+id/include1"
                 app:layout_constraintTop_toBottomOf="@+id/include1" />
+
+            <include
+                android:id="@+id/include3"
+                layout="@layout/card3_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/include2"
+                app:layout_constraintStart_toStartOf="@+id/include2"
+                app:layout_constraintTop_toBottomOf="@+id/include2"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
