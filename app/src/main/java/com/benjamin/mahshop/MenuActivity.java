@@ -48,12 +48,13 @@ public class MenuActivity extends AppCompatActivity {
         if (view.getId() == decrement_button_id) {
             // Decrease quantity only if quantity > 0
             if (quantity > 0) {
-                quantity--;
-                updateQuantityDisplay(quantity, quantityTxt);
-                updatePriceDisplay(quantity, priceTxt, subtotalTxt);
+                //quantity--;
+                cart.decreaseItemCount(name, price, quantity);
+                updateQuantityDisplay(quantity - 1, quantityTxt);
+                updatePriceDisplay(quantity - 1, priceTxt, subtotalTxt);
 
                 // Decrease quantity of item
-                cart.decreaseItemCount(name, price, quantity);
+                //cart.decreaseItemCount(name, price, quantity);
 
                 // Test code
                 Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
@@ -103,7 +104,7 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void startCheckoutActivity(View view) {
-        testClass test = new testClass("Leo");
+        // testClass test = new testClass("Leo");
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
         checkoutActivity.putExtra("CART", cart);

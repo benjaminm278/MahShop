@@ -64,7 +64,7 @@ public class shopCart implements Parcelable {
             }
             else {
                 // Remove item completely
-                items.remove(i);
+                //items.remove(i);
             }
         }
 
