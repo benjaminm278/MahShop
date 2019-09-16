@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.17" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/checkout_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -36,7 +36,7 @@
         tools:layout_editor_absoluteY="610dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cancel_checkout_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/checkout_button" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="257dp"
@@ -57,14 +57,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/checkout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include">
 
         <TextView
             android:id="@+id/total_label"
             android:layout_width="159dp"
-            android:layout_height="43dp"
+            android:layout_height="wrap_content"
             android:paddingTop="15sp"
             android:paddingRight="12sp"
             android:text="Total"
@@ -109,11 +109,11 @@
         <TextView
             android:id="@+id/tpq_textView"
             android:layout_width="95dp"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@string/default_price_value"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tpq_label"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
             android:layout_width="97dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="TextView"
+            android:text="@string/default_price_value"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/subtotal_label"
             app:layout_constraintEnd_toEndOf="parent"
@@ -139,11 +139,11 @@
         <TextView
             android:id="@+id/tps_textView"
             android:layout_width="97dp"
-            android:layout_height="26dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="TextView"
+            android:text="@string/default_price_value"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/tps_label"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,16 +155,16 @@
         <TextView
             android:id="@+id/total_textview"
             android:layout_width="97dp"
-            android:layout_height="43sp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:paddingTop="15sp"
-            android:text="TextView"
+            android:text="@string/default_price_value"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView16"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/total_label"
             app:layout_constraintTop_toBottomOf="@+id/tpq_label"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
