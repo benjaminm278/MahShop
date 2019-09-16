@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MahShop</string>
 
+    <string name="checkout">Checkout</string>
+    <string name="default_price_value">$0.00</string>
+    <string name="dollar_sign">$</string>
+    <string name="tps_rate">0.05</string>
+    <string name="tpq_rate">0.09975</string>
+
+
     <string name="name1">Bento Box</string>
     <string name="price1">$15.99</string>
     <string name="description1">Have a taste of Japan\'s home box meal. Featuring sushi with
@@ -16,9 +23,9 @@
     <string name="subtotal_label">Subtotal:</string>
     <string name="quantity_default_value">0</string>
 
-    <string name="checkout">Checkout</string>
-    <string name="default_price_value">$0.00</string>
-    <string name="dollar_sign">$</string>
-    <string name="tps_rate">0.05</string>
-    <string name="tpq_rate">0.09975</string>
+    <string name="name2">Dragon Sushi Roll</string>
+    <string name="price2">$18.59</string>
+    <string name="description2">Taste the power of the dragon sushi! Features sticky rice, seaweed,
+        smoked salmon, sesame seeds and carrots. Each piece of sushi is topped with freshly cut
+        avocado, while the head has finely sliced avocadoes delicately put together.</string>
 </resources>
