@@ -34,6 +34,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }*/
 
         writeBill();
+        fillAmounts();
     }
 
     public void writeBill() {
@@ -75,5 +76,17 @@ public class CheckoutActivity extends AppCompatActivity {
         tr.addView(t3);
         tr.addView(t4);
         billLayout.addView(tr);
+    }
+
+    public void fillAmounts() {
+        // Get data
+        menuIntent = getIntent();
+        shopCart s = menuIntent.getParcelableExtra("CART");
+
+        // References
+        TextView subTotalTxt = findViewById(R.id.subtotal_textView);
+
+        // Put subtotal in subtotal field
+        subTotalTxt.setText("$49.97");
     }
 }
