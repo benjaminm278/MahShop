@@ -48,26 +48,13 @@ public class MenuActivity extends AppCompatActivity {
         if (view.getId() == decrement_button_id) {
             // Decrease quantity only if quantity > 0
             if (currentQuantity > 0) {
-                //quantity--;
                 cart.decreaseItemCount(name, price, currentQuantity);
                 updateQuantityDisplay(currentQuantity - 1, quantityTxt);
                 updatePriceDisplay(currentQuantity - 1, priceTxt, subtotalTxt);
-
-                // Decrease quantity of item
-                //cart.decreaseItemCount(name, price, quantity);
-
-                // Test code
-                try {
-                    Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception e) {
-                    Toast.makeText(this, "Item doesn't exist", Toast.LENGTH_SHORT).show();
-                }
             }
         }
         else if (view.getId() == increment_button_id) {
             // Increase quantity
-            //quantity++;
             /*updateDisplays(quantity, quantityTxt,
                     price, priceTxt,
                     subtotalTxt);
@@ -76,8 +63,10 @@ public class MenuActivity extends AppCompatActivity {
             updateQuantityDisplay(currentQuantity + 1, quantityTxt);
             updatePriceDisplay(currentQuantity + 1, priceTxt, subtotalTxt);
 
-            Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
         }
+
+        Toast.makeText(this, nameTxt.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 
     // To be implemented after functionality completion

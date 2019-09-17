@@ -28,36 +28,26 @@ public class shopCart implements Parcelable {
      */
     public void addItem(String name, double price, int quantity) {
         Item i = new Item(name, price, quantity);
-  /*
-        boolean itemExists = false;
+
+        quantity++;
+
+        boolean found = false;
+
         for (int j = 0; j < items.size(); j++) {
-            // Same items
-            if (i.getName().equals(items.get(j).getName())) {
-                int newQuantity = quantity + 1;
-                items.get(j).setQuantity(newQuantity);
-                itemExists = true;
-                break;
+            if (i.equals(items.get(j))) {
+                items.get(items.indexOf(i)).setQuantity(quantity);
+                found = true;
             }
         }
 
-        if (!itemExists) {
-            items.add(new Item(name, price, quantity));
-        }
-*/
-        quantity++;
-
-        if (items.contains(i)) {
-            // Item exists
-            // Just update quantity
-            items.get(items.indexOf(i)).setQuantity(quantity);
-        }
-        else {
+        if (!found) {
             items.add(new Item(name, price, quantity));
         }
 
         grandSubtotal += price;
 
-        Log.d("theTotal", "Q: " + quantity + " " + items.indexOf(i));
+        Log.d("abh", name);
+        Log.d("number of i", items.size() + "");
     }
 
     /**
@@ -68,21 +58,6 @@ public class shopCart implements Parcelable {
      */
     public void decreaseItemCount(String name, double price, int quantity) {
         Item i = new Item(name, price, quantity);
-
-        /*
-        for (int j = 0; j < items.size(); j++) {
-            // Same items
-            if (i.getName().equals(items.get(j).getName())) {
-                int newQuantity = quantity - 1;
-                items.get(j).setQuantity(newQuantity);
-
-                if (items.get(j).getQuantity() <= 0) {
-                    items.remove(items.get(j));
-                    Log.d("Removed", "r");
-                }
-                break;
-            }
-        }*/
 
         if (items.contains(i)) {
             // Item exists
@@ -95,7 +70,6 @@ public class shopCart implements Parcelable {
                 items.get(items.indexOf(i)).setQuantity(quantity);
             }
             else {
-                Log.d("Empty", "ind: " + items.get(0));
                 try {
                     items.remove(i);
                     Log.d("It was s", "worked");

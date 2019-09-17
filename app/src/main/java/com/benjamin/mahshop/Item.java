@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-public class Item implements Parcelable {
+public class Item extends Object implements Parcelable {
     private String name;
     private double price;
     private int quantity;
@@ -38,11 +38,19 @@ public class Item implements Parcelable {
         return this.quantity;
     }
 
+    @Override
     public boolean equals(Object o) {
-        return true;
+        if (!(o instanceof Item)) {
+            return false;
+        }
+
+        Item otherItem = (Item) o;
+
+        return this.name == otherItem.name
+                && this.price == otherItem.price;
     }
 
-    public boolean contains(Item i) {
+    public boolean contains(Item it) {
         Log.d("Testing contains", "abc");
         return true;
     }

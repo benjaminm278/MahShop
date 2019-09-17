@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.DecimalFormat;
 
 public class CheckoutActivity extends AppCompatActivity {
-    private static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
     private TableLayout billLayout;
     private Intent menuIntent;
     private shopCart s;
@@ -45,6 +44,8 @@ public class CheckoutActivity extends AppCompatActivity {
         // Retrieve all necessary variables
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
+
+        Toast.makeText(this, s.getNumberOfItems() + "***", Toast.LENGTH_SHORT).show();
 
         for (int i = 0; i < s.getNumberOfItems(); i++) {
             String[] stuff = s.getItemString(i).split("-");
