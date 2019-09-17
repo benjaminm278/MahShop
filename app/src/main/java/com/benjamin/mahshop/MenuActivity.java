@@ -8,9 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class MenuActivity extends AppCompatActivity {
     private shopCart cart;
     public static final String EXTRA_CART = "extraCart";
+
+    private DecimalFormat df = new DecimalFormat("##.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +95,8 @@ public class MenuActivity extends AppCompatActivity {
         String priceStr = k.substring(1); // Break it up
         double price = Double.parseDouble(priceStr); // Converts to double
         double subtotal = price * quantity; // Compute
-        subtotalTxt.setText("$" + subtotal); // Display
+        String st = df.format(subtotal);
+        subtotalTxt.setText("$" + st); // Display
     }
 
     /**

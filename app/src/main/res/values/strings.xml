@@ -31,5 +31,8 @@
     <string name="price3">$9.99</string>
     <string name="description3">A spicy and yet sour taste, this soup will be sure to provide an
         extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="main_description">Enjoy shopping for food from the comfort of your own home! This is MahShop.</string>
+    <string name="begin_button_text">Begin</string>
+    <string name="welcome_msg">Welcome!</string>
 
 </resources>
