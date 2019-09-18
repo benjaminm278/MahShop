@@ -42,7 +42,6 @@ public class MenuActivity extends AppCompatActivity {
         ViewGroup groupOfCards = (ViewGroup) c;
         int numberOfChildren = groupOfCards.getChildCount();
 
-        Log.d("Count123", numberOfChildren + "");
         // Iterate through cart
         for (int i = 0; i < numberOfChildren; i++) {
             // Compare cart with item
@@ -60,18 +59,7 @@ public class MenuActivity extends AppCompatActivity {
                 // Set subtotal
                 TextView st = groupOfCards.getChildAt(i).findViewById(R.id.subtotal_text);
                 st.setText("$" + itemData[3]);
-                Log.d("Here", "HERE");
             }
-
-            /*
-            // Compare item name with card name
-            if (itemData[0].equals(cardName)) {
-                // Set quantity
-                TextView quantityTxt = (TextView) groupOfCards.getChildAt(i).findViewById(R.id.quantity_text);
-                quantityTxt.setText(itemData[2]);
-            }*/
-
-            Log.d("Count123", nameTxt.getText().toString());
         }
     }
 
@@ -161,11 +149,9 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void startCheckoutActivity(View view) {
-        // testClass test = new testClass("Leo");
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
         checkoutActivity.putExtra("CART", cart);
-        // checkoutActivity.putExtra("TEST", test);
         startActivity(checkoutActivity);
     }
 }

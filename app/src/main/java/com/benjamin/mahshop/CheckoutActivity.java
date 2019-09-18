@@ -48,23 +48,23 @@ public class CheckoutActivity extends AppCompatActivity {
         Toast.makeText(this, s.getNumberOfItems() + "***", Toast.LENGTH_SHORT).show();
 
         for (int i = 0; i < s.getNumberOfItems(); i++) {
-            String[] stuff = s.getItemString(i).split("-");
+            String[] itemData = s.getItemString(i).split("-");
 
             TableRow tr = new TableRow(this);
-            TextView t1 = new TextView(this);
-            TextView t2 = new TextView(this);
-            TextView t3 = new TextView(this);
-            TextView t4 = new TextView(this);
+            TextView item_name_table_cell = new TextView(this);
+            TextView unit_price_table_cell = new TextView(this);
+            TextView quantity_table_cell = new TextView(this);
+            TextView subtotal_table_cell = new TextView(this);
 
-            t1.setText(stuff[0]);
-            t2.setText(stuff[1]);
-            t3.setText(stuff[2]);
-            t4.setText(stuff[3]);
+            item_name_table_cell.setText(itemData[0]);
+            unit_price_table_cell.setText(itemData[1]);
+            quantity_table_cell.setText(itemData[2]);
+            subtotal_table_cell.setText(itemData[3]);
 
-            tr.addView(t1);
-            tr.addView(t2);
-            tr.addView(t3);
-            tr.addView(t4);
+            tr.addView(item_name_table_cell);
+            tr.addView(unit_price_table_cell);
+            tr.addView(quantity_table_cell);
+            tr.addView(subtotal_table_cell);
 
             billLayout.addView(tr);
         }
