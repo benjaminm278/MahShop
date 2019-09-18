@@ -2,11 +2,15 @@ package com.benjamin.mahshop;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.text.DecimalFormat;
 
@@ -23,8 +27,61 @@ public class MenuActivity extends AppCompatActivity {
 
         // Creates a new shopping cart
         cart = new shopCart();
-      }
 
+        if (savedInstanceState != null) {
+            cart = savedInstanceState.getParcelable("ShoppingCart");
+
+            reAddItems();
+
+            Log.d("Rev102", cart.getNumberOfItems() + "");
+        }
+    }
+
+    public void reAddItems() {
+        ConstraintLayout c = (ConstraintLayout) findViewById(R.id.constraintLayoutCards);
+        ViewGroup groupOfCards = (ViewGroup) c;
+        int numberOfChildren = groupOfCards.getChildCount();
+
+        Log.d("Count123", numberOfChildren + "");
+        // Iterate through cart
+        for (int i = 0; i < numberOfChildren; i++) {
+            // Compare cart with item
+            // Retrieve name
+            TextView nameTxt = (TextView) groupOfCards.getChildAt(i).findViewById(R.id.name_text);
+            String cardName = nameTxt.getText().toString();
+
+            // Check if the cart has a particular item
+            if (cart.contains(cardName)) {
+                String[] itemData = cart.getItemString(cart.indexOf(cardName)).split("-");
+                // Set quantity
+                TextView qt = groupOfCards.getChildAt(i).findViewById(R.id.quantity_text);
+                qt.setText(itemData[2]);
+
+                // Set subtotal
+                TextView st = groupOfCards.getChildAt(i).findViewById(R.id.subtotal_text);
+                st.setText("$" + itemData[3]);
+                Log.d("Here", "HERE");
+            }
+
+            /*
+            // Compare item name with card name
+            if (itemData[0].equals(cardName)) {
+                // Set quantity
+                TextView quantityTxt = (TextView) groupOfCards.getChildAt(i).findViewById(R.id.quantity_text);
+                quantityTxt.setText(itemData[2]);
+            }*/
+
+            Log.d("Count123", nameTxt.getText().toString());
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Place data
+        outState.putParcelable("ShoppingCart", cart);
+    }
     /**
      * Changes the quantity
      * @param view

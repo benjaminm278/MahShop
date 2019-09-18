@@ -84,6 +84,20 @@ public class shopCart implements Parcelable {
         Log.d("theTotal", quantity + "");
     }
 
+    public boolean contains(String name) {
+        return indexOf(name) != -1;
+    }
+
+    public int indexOf(String name) {
+        // Iterate through each item in cart and compare names
+        for (int i = 0; i < items.size(); i++) {
+            if (name.equals(items.get(i).getName())) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
     /**
      * Retrieves an item string at a given index
      * @param index
