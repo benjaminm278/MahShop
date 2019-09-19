@@ -26,8 +26,6 @@ public class CheckoutActivity extends AppCompatActivity {
     private double tpq;
     private double total;
 
-    private DecimalFormat df = new DecimalFormat("#0.00");
-
     public final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
 
     @Override
@@ -50,8 +48,8 @@ public class CheckoutActivity extends AppCompatActivity {
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
 
-        for (int i = 0; i < cart.getNumberOfItems(); i++) {
-            String[] itemData = cart.getItemString(i).split("-");
+        for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
+            String[] itemData = cart.getItemString(itemIndex).split("-");
 
             TableRow tr = new TableRow(this);
             TextView item_name_table_cell = new TextView(this);
@@ -126,6 +124,11 @@ public class CheckoutActivity extends AppCompatActivity {
         setAmountDisplay(total, totalTxt);
     }
 
+    /**
+     * Helper method: Formats and displays amount
+     * @param amount
+     * @param amountText
+     */
     private void setAmountDisplay(double amount, TextView amountText) {
         String formattedAmount = String.format("%.2f", amount);
         amountText.setText(dollarSign + " " + formattedAmount);
