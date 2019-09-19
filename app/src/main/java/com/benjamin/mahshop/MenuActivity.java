@@ -16,10 +16,12 @@ import java.text.DecimalFormat;
 
 public class MenuActivity extends AppCompatActivity {
     private shopCart cart;
-    public static final String EXTRA_CART = "extraCart";
+    public static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
 
-    private DecimalFormat df = new DecimalFormat("##.00");
-
+    /**
+     * Places data in activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +30,28 @@ public class MenuActivity extends AppCompatActivity {
         // Creates a new shopping cart
         cart = new shopCart();
 
+        // Retrieve data if device has changed orientation
         if (savedInstanceState != null) {
             cart = savedInstanceState.getParcelable("ShoppingCart");
-
             reAddItems();
-
-            Log.d("Rev102", cart.getNumberOfItems() + "");
         }
     }
 
+    /**
+     * Retrieves data from current activity to preserve
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Place data
+        outState.putParcelable("ShoppingCart", cart);
+    }
+
+    /**
+     * Readds items and their values into their cardviews
+     */
     public void reAddItems() {
         ConstraintLayout c = (ConstraintLayout) findViewById(R.id.constraintLayoutCards);
         ViewGroup groupOfCards = (ViewGroup) c;
@@ -63,18 +78,10 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // Place data
-        outState.putParcelable("ShoppingCart", cart);
-    }
     /**
      * Changes the quantity
      * @param view
      */
-
     public void changeQuantity(View view) {
         // Get references
         View x = (View) view.getParent();
@@ -103,23 +110,11 @@ public class MenuActivity extends AppCompatActivity {
             }
         }
         else if (view.getId() == increment_button_id) {
-            // Increase quantity
-            /*updateDisplays(quantity, quantityTxt,
-                    price, priceTxt,
-                    subtotalTxt);
-            */
             cart.addItem(name, price, currentQuantity);
             updateQuantityDisplay(currentQuantity + 1, quantityTxt);
             updatePriceDisplay(currentQuantity + 1, priceTxt, subtotalTxt);
-
-            //Toast.makeText(this, cart.getItemString(0), Toast.LENGTH_SHORT).show();
         }
-
-        Toast.makeText(this, nameTxt.getText().toString(), Toast.LENGTH_SHORT).show();
     }
-
-    // To be implemented after functionality completion
-    public void updateDisplays() {}
 
     /**
      * Updates quantity display
@@ -140,7 +135,7 @@ public class MenuActivity extends AppCompatActivity {
         String priceStr = k.substring(1); // Break it up
         double price = Double.parseDouble(priceStr); // Converts to double
         double subtotal = price * quantity; // Compute
-        String st = df.format(subtotal);
+        String st = String.format("%.2f", subtotal);
         subtotalTxt.setText("$" + st); // Display
     }
 
@@ -151,7 +146,7 @@ public class MenuActivity extends AppCompatActivity {
     public void startCheckoutActivity(View view) {
         // Open new checkout activity
         Intent checkoutActivity = new Intent(this, CheckoutActivity.class);
-        checkoutActivity.putExtra("CART", cart);
+        checkoutActivity.putExtra(EXTRA_CART, cart);
         startActivity(checkoutActivity);
     }
 }

@@ -34,5 +34,6 @@
     <string name="main_description">Enjoy shopping for food from the comfort of your own home! This is MahShop.</string>
     <string name="begin_button_text">Begin</string>
     <string name="welcome_msg">Welcome!</string>
+    <string name="thank_you_msg">Thanks for using my shopping application!</string>
 
 </resources>

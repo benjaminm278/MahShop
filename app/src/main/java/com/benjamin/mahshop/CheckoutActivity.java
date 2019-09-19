@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 public class CheckoutActivity extends AppCompatActivity {
     private TableLayout billLayout;
     private Intent menuIntent;
-    private shopCart s;
+    private shopCart cart;
     private final double TPS_RATE = 0.05;
     private final double TPQ_RATE = 0.09975;
     private String dollarSign = "$";
@@ -26,7 +26,9 @@ public class CheckoutActivity extends AppCompatActivity {
     private double tpq;
     private double total;
 
-    private DecimalFormat df = new DecimalFormat("##.00");
+    private DecimalFormat df = new DecimalFormat("#0.00");
+
+    public final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +36,22 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
 
         menuIntent = getIntent();
-        s = menuIntent.getParcelableExtra("CART");
+        cart = menuIntent.getParcelableExtra(EXTRA_CART);
 
         writeBill();
         fillAmounts();
     }
 
+    /**
+     * Creates a display for the bill
+     */
     public void writeBill() {
         // Retrieve all necessary variables
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
 
-        Toast.makeText(this, s.getNumberOfItems() + "***", Toast.LENGTH_SHORT).show();
-
-        for (int i = 0; i < s.getNumberOfItems(); i++) {
-            String[] itemData = s.getItemString(i).split("-");
+        for (int i = 0; i < cart.getNumberOfItems(); i++) {
+            String[] itemData = cart.getItemString(i).split("-");
 
             TableRow tr = new TableRow(this);
             TextView item_name_table_cell = new TextView(this);
@@ -70,6 +73,9 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Fills in the fields displaying amounts
+     */
     public void fillAmounts() {
         // Get data
         menuIntent = getIntent();
@@ -80,39 +86,64 @@ public class CheckoutActivity extends AppCompatActivity {
         setGrandTotal();
     }
 
+    /**
+     * Displays subtotal
+     */
     private void setSubtotal() {
         // References
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
-        subtotal = Double.parseDouble(df.format(s.getTotal()));
-        subTotalTxt.setText(dollarSign + " " + subtotal);
+        subtotal = cart.getTotal();
+        setAmountDisplay(subtotal, subTotalTxt);
     }
 
+    /**
+     * Displays TPS
+     */
     private void setTPSamount() {
         // Variables
         TextView tpsTxt = findViewById(R.id.tps_textView);
-        tps = Double.parseDouble(df.format(subtotal * TPS_RATE));
-        tpsTxt.setText(dollarSign + " " + tps);
+        tps = subtotal * TPS_RATE;
+        setAmountDisplay(tps, tpsTxt);
     }
 
+    /**
+     * Displays TPQ
+     */
     private void setTPQamount() {
         // Variables
-        TextView tpsTxt = findViewById(R.id.tpq_textView);
-        tpq = Double.parseDouble(df.format(subtotal * TPQ_RATE));
-        tpsTxt.setText(dollarSign + " " + tpq);
+        TextView tpqTxt = findViewById(R.id.tpq_textView);
+        tpq = subtotal * TPQ_RATE;
+        setAmountDisplay(tpq, tpqTxt);
     }
 
+    /**
+     * Displays total price
+     */
     private void setGrandTotal() {
         // Variables
-        TextView tpsTxt = findViewById(R.id.total_textview);
-        total = Double.parseDouble(df.format(subtotal + tps + tpq));
-        tpsTxt.setText(dollarSign + " " + total);
+        TextView totalTxt = findViewById(R.id.total_textview);
+        total = subtotal + tps + tpq;
+        setAmountDisplay(total, totalTxt);
     }
 
+    private void setAmountDisplay(double amount, TextView amountText) {
+        String formattedAmount = String.format("%.2f", amount);
+        amountText.setText(dollarSign + " " + formattedAmount);
+    }
+
+    /**
+     * Launches the end activity
+     * @param view
+     */
     public void launchEndActivity(View view) {
         Intent finalActivity = new Intent(this, endOfCheckoutActivity.class);
         startActivity(finalActivity);
     }
 
+    /**
+     * Closes this activity
+     * @param view
+     */
     public void launchPreviousActivity(View view) {
         finish();
     }
