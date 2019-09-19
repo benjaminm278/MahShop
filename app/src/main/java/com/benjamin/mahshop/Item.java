@@ -30,14 +30,6 @@ public class Item extends Object implements Parcelable {
         return this.name;
     }
 
-    public double getPrice() {
-        return this.price;
-    }
-
-    public int getQuantity() {
-        return this.quantity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Item)) {
@@ -50,13 +42,8 @@ public class Item extends Object implements Parcelable {
                 && this.price == otherItem.price;
     }
 
-    public boolean contains(Item it) {
-        Log.d("Testing contains", "abc");
-        return true;
-    }
-
     /**
-     *
+     * Returns a string of an item with delimiter
      * @return
      */
     @Override
