@@ -25,23 +25,31 @@ public class shopCart implements Parcelable {
      * @param quantity
      */
     public void addItem(String name, double price, int quantity) {
+        // Creates new item, but is not added in cart yet
         Item i = new Item(name, price, quantity);
 
+        // Increase quantity
         quantity++;
 
         boolean found = false;
 
+        // Iterates through cart
         for (int j = 0; j < items.size(); j++) {
+            // Compares current item with each item in cart
             if (i.equals(items.get(j))) {
+                // Changes quantity
                 items.get(items.indexOf(i)).setQuantity(quantity);
                 found = true;
             }
         }
 
+        // Item doesn't exist?
         if (!found) {
+            // Adds new item to cart with new quantity
             items.add(new Item(name, price, quantity));
         }
 
+        // Updates the grand subtotal of the cart
         grandSubtotal += price;
     }
 

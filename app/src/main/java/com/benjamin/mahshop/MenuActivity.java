@@ -123,8 +123,7 @@ public class MenuActivity extends AppCompatActivity {
      * Updates quantity display
      */
     private void updateQuantityDisplay(int quantity, TextView txt) {
-        String a = Integer.toString(quantity);
-        txt.setText(a);
+        txt.setText(Integer.toString(quantity));
     }
 
     /**
