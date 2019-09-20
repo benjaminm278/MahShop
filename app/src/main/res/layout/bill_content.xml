@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="390dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -29,7 +29,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/textView2"
