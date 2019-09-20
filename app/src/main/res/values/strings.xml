@@ -35,5 +35,9 @@
     <string name="begin_button_text">Begin</string>
     <string name="welcome_msg">Welcome!</string>
     <string name="thank_you_msg">Thanks for using my shopping application!</string>
+    <string name="item_header">Item</string>
+    <string name="unit_price_header">Unit price</string>
+    <string name="quantity_header">Quantity</string>
+    <string name="cost_header">Cost</string>
 
 </resources>

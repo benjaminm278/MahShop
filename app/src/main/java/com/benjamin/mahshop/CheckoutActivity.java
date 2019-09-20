@@ -48,25 +48,33 @@ public class CheckoutActivity extends AppCompatActivity {
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
 
+        // Iterates for each row
         for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
+            // Retrieve item string and splits each item field by its delimiter
             String[] itemData = cart.getItemString(itemIndex).split("-");
 
+            // Creates new table row
             TableRow tr = new TableRow(this);
+
+            // Creates new textviews for each field
             TextView item_name_table_cell = new TextView(this);
             TextView unit_price_table_cell = new TextView(this);
             TextView quantity_table_cell = new TextView(this);
             TextView subtotal_table_cell = new TextView(this);
 
+            // Fills textviews
             item_name_table_cell.setText(itemData[0]);
             unit_price_table_cell.setText(itemData[1]);
             quantity_table_cell.setText(itemData[2]);
             subtotal_table_cell.setText(itemData[3]);
 
+            // Adds table cells to row
             tr.addView(item_name_table_cell);
             tr.addView(unit_price_table_cell);
             tr.addView(quantity_table_cell);
             tr.addView(subtotal_table_cell);
 
+            // Add table row to bill
             billLayout.addView(tr);
         }
     }
@@ -78,6 +86,7 @@ public class CheckoutActivity extends AppCompatActivity {
         // Get data
         menuIntent = getIntent();
 
+        // Computes amounts
         setSubtotal();
         setTPSamount();
         setTPQamount();

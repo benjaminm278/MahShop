@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 public class MenuActivity extends AppCompatActivity {
     private shopCart cart;
     public static final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
+    public static final String PARCEL_CART = "com.benjamin.mahshop.parcel.CART";
 
     /**
      * Places data in activity
@@ -32,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
 
         // Retrieve data if device has changed orientation
         if (savedInstanceState != null) {
-            cart = savedInstanceState.getParcelable("ShoppingCart");
+            cart = savedInstanceState.getParcelable(PARCEL_CART);
             reAddItems();
         }
     }
@@ -46,7 +47,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         // Place data
-        outState.putParcelable("ShoppingCart", cart);
+        outState.putParcelable(PARCEL_CART, cart);
     }
 
     /**

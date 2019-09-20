@@ -12,6 +12,12 @@ public class Item extends Object implements Parcelable {
 
     private char delimiter = '-';
 
+    /**
+     * Creates a new item
+     * @param name
+     * @param price
+     * @param quantity
+     */
     public Item(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
@@ -19,17 +25,30 @@ public class Item extends Object implements Parcelable {
         this.subTotal = price * quantity;
     }
 
+    /**
+     * Updates or sets quantity
+     * @param quantity
+     */
     public void setQuantity(int quantity) {
         if (quantity > 0) {
             this.quantity = quantity;
-            subTotal = price * quantity;
+            subTotal = price * quantity; // Updates subtotal of item
         }
     }
 
+    /**
+     * Returns name of item
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Compares two items
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Item)) {
@@ -54,6 +73,14 @@ public class Item extends Object implements Parcelable {
                 + this.subTotal;
     }
 
+    /*
+        Start of parcelable implementations
+     */
+
+    /**
+     * Stores item attributes in parcel object
+     * @param in
+     */
     protected Item(Parcel in) {
         name = in.readString();
         price = in.readDouble();
@@ -61,6 +88,9 @@ public class Item extends Object implements Parcelable {
         subTotal = in.readDouble();
     }
 
+    /**
+     * Creates a creator
+     */
     public static final Creator<Item> CREATOR = new Creator<Item>() {
         @Override
         public Item createFromParcel(Parcel source) {
@@ -78,6 +108,11 @@ public class Item extends Object implements Parcelable {
         return 0;
     }
 
+    /**
+     * Reads from parcel object
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
