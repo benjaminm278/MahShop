@@ -54,27 +54,29 @@ public class MenuActivity extends AppCompatActivity {
      * Readds items and their values into their cardviews
      */
     public void reAddItems() {
-        ConstraintLayout c = (ConstraintLayout) findViewById(R.id.constraintLayoutCards);
-        ViewGroup groupOfCards = (ViewGroup) c;
-        int numberOfChildren = groupOfCards.getChildCount();
+        // Variable declaration
+        ConstraintLayout clc = findViewById(R.id.constraintLayoutCards);
+        ViewGroup groupOfCards = clc;
+        int numberOfChildren = groupOfCards.getChildCount(); // Get number of cardviews
 
         // Iterate through cart
         for (int i = 0; i < numberOfChildren; i++) {
-            // Compare cart with item
             // Retrieve name
-            TextView nameTxt = (TextView) groupOfCards.getChildAt(i).findViewById(R.id.name_text);
+            TextView nameTxt = groupOfCards.getChildAt(i).findViewById(R.id.name_text);
             String cardName = nameTxt.getText().toString();
 
             // Check if the cart has a particular item
             if (cart.contains(cardName)) {
+                // Retrieves string of a particular item
                 String[] itemData = cart.getItemString(cart.indexOf(cardName)).split("-");
-                // Set quantity
-                TextView qt = groupOfCards.getChildAt(i).findViewById(R.id.quantity_text);
-                qt.setText(itemData[2]);
 
-                // Set subtotal
-                TextView st = groupOfCards.getChildAt(i).findViewById(R.id.subtotal_text);
-                st.setText("$" + itemData[3]);
+                // Sets quantity
+                TextView quantityTxt = groupOfCards.getChildAt(i).findViewById(R.id.quantity_text);
+                quantityTxt.setText(itemData[2]);
+
+                // Sets subtotal
+                TextView subtotalTxt = groupOfCards.getChildAt(i).findViewById(R.id.subtotal_text);
+                subtotalTxt.setText("$" + itemData[3]);
             }
         }
     }
@@ -128,16 +130,19 @@ public class MenuActivity extends AppCompatActivity {
     /**
      * Computes new subtotal
      * @param quantity
-     * @param txt
+     * @param priceTxt
      * @param subtotalTxt
      */
-    private void updatePriceDisplay(int quantity, TextView txt, TextView subtotalTxt) {
-        String k = txt.getText().toString(); // Retrieve price
-        String priceStr = k.substring(1); // Break it up
-        double price = Double.parseDouble(priceStr); // Converts to double
-        double subtotal = price * quantity; // Compute
-        String st = String.format("%.2f", subtotal);
-        subtotalTxt.setText("$" + st); // Display
+    private void updatePriceDisplay(int quantity, TextView priceTxt, TextView subtotalTxt) {
+        // Retrieve price
+        String k = priceTxt.getText().toString();
+        String priceStr = k.substring(1); // Separate $ and price number
+        double price = Double.parseDouble(priceStr);
+
+        // Compute, format and display
+        double subtotal = price * quantity;
+        String formattedSubtotal = String.format("%.2f", subtotal);
+        subtotalTxt.setText("$" + formattedSubtotal);
     }
 
     /**

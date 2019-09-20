@@ -10,8 +10,6 @@ public class shopCart implements Parcelable {
     private double grandSubtotal;
     private ArrayList<Item> items;
 
-    public double getTotal() { return grandSubtotal;}
-
     /**
      * Creates a new shopping cart object
      */
@@ -45,9 +43,6 @@ public class shopCart implements Parcelable {
         }
 
         grandSubtotal += price;
-
-        Log.d("abh", name);
-        Log.d("number of i", items.size() + "");
     }
 
     /**
@@ -70,18 +65,15 @@ public class shopCart implements Parcelable {
                 items.get(items.indexOf(i)).setQuantity(quantity);
             }
             else {
-                try {
-                    items.remove(i);
-                    Log.d("It was s", "worked");
-                }
-                catch (Exception e) {
-
-                }
+                items.remove(i);
             }
         }
 
         grandSubtotal -= price;
-        Log.d("theTotal", quantity + "");
+    }
+
+    public double getTotal() {
+        return grandSubtotal;
     }
 
     public boolean contains(String name) {
