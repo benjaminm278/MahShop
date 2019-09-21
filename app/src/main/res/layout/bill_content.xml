@@ -34,6 +34,7 @@
                         android:id="@+id/item_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
                         android:text="@string/item_header"
                         android:textSize="@dimen/bill_header_textSize" />
 
@@ -41,6 +42,7 @@
                         android:id="@+id/unit_price_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
                         android:text="@string/unit_price_header"
                         android:textSize="@dimen/bill_header_textSize" />
 
@@ -48,6 +50,7 @@
                         android:id="@+id/quantity_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
                         android:text="@string/quantity_header"
                         android:textSize="@dimen/bill_header_textSize" />
 
@@ -55,6 +58,7 @@
                         android:id="@+id/cost_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
                         android:text="@string/cost_header"
                         android:textSize="@dimen/bill_header_textSize" />
                 </TableRow>

@@ -104,6 +104,7 @@ public class MenuActivity extends AppCompatActivity {
         String priceStr = priceTxt.getText().toString().substring(1);
         double price = Double.parseDouble(priceStr);
 
+        // Checks which quantity button was pressed
         if (view.getId() == decrement_button_id) {
             // Decrease quantity only if quantity > 0
             if (currentQuantity > 0) {
@@ -113,6 +114,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         }
         else if (view.getId() == increment_button_id) {
+            // Increase quantity
             cart.addItem(name, price, currentQuantity);
             updateQuantityDisplay(currentQuantity + 1, quantityTxt);
             updatePriceDisplay(currentQuantity + 1, priceTxt, subtotalTxt);

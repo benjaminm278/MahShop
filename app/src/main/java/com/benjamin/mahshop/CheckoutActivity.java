@@ -64,10 +64,10 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView subtotal_table_cell = new TextView(this);
 
             // Fills textviews
-            item_name_table_cell.setText(itemData[0]);
-            unit_price_table_cell.setText(itemData[1]);
-            quantity_table_cell.setText(itemData[2]);
-            subtotal_table_cell.setText(itemData[3]);
+            item_name_table_cell.setText(itemData[0]); // Item name
+            unit_price_table_cell.setText(getString(R.string.dollar_sign) + itemData[1]); // Unit price
+            quantity_table_cell.setText(itemData[2]); // Quantity
+            subtotal_table_cell.setText(getString(R.string.dollar_sign) + itemData[3]); // Subtotal
 
             // Adds table cells to row
             tr.addView(item_name_table_cell);
