@@ -19,7 +19,6 @@ public class CheckoutActivity extends AppCompatActivity {
     private shopCart cart;
     private final double TPS_RATE = 0.05;
     private final double TPQ_RATE = 0.09975;
-    private String dollarSign = "$";
 
     private double subtotal;
     private double tps;
@@ -33,9 +32,11 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        // Retrieve previous activity (menu) and its passed data
         menuIntent = getIntent();
         cart = menuIntent.getParcelableExtra(EXTRA_CART);
 
+        // Fill bill contents
         writeBill();
         fillAmounts();
     }
@@ -97,7 +98,6 @@ public class CheckoutActivity extends AppCompatActivity {
      * Displays subtotal
      */
     private void setSubtotal() {
-        // References
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
         subtotal = cart.getTotal();
         setAmountDisplay(subtotal, subTotalTxt);
@@ -107,7 +107,6 @@ public class CheckoutActivity extends AppCompatActivity {
      * Displays TPS
      */
     private void setTPSamount() {
-        // Variables
         TextView tpsTxt = findViewById(R.id.tps_textView);
         tps = subtotal * TPS_RATE;
         setAmountDisplay(tps, tpsTxt);
@@ -117,7 +116,6 @@ public class CheckoutActivity extends AppCompatActivity {
      * Displays TPQ
      */
     private void setTPQamount() {
-        // Variables
         TextView tpqTxt = findViewById(R.id.tpq_textView);
         tpq = subtotal * TPQ_RATE;
         setAmountDisplay(tpq, tpqTxt);
@@ -127,7 +125,6 @@ public class CheckoutActivity extends AppCompatActivity {
      * Displays total price
      */
     private void setGrandTotal() {
-        // Variables
         TextView totalTxt = findViewById(R.id.total_textview);
         total = subtotal + tps + tpq;
         setAmountDisplay(total, totalTxt);
@@ -140,7 +137,7 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     private void setAmountDisplay(double amount, TextView amountText) {
         String formattedAmount = String.format("%.2f", amount);
-        amountText.setText(dollarSign + " " + formattedAmount);
+        amountText.setText(getString(R.string.dollar_sign) + formattedAmount);
     }
 
     /**

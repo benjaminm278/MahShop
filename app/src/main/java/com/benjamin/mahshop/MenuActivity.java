@@ -87,11 +87,11 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void changeQuantity(View view) {
         // Get references
-        View x = (View) view.getParent();
-        TextView quantityTxt = x.findViewById(R.id.quantity_text);
-        TextView priceTxt = x.findViewById(R.id.price_text);
-        TextView subtotalTxt = x.findViewById(R.id.subtotal_text);
-        TextView nameTxt = x.findViewById(R.id.name_text);
+        View itemCardView = (View) view.getParent();
+        TextView quantityTxt = itemCardView.findViewById(R.id.quantity_text);
+        TextView priceTxt = itemCardView.findViewById(R.id.price_text);
+        TextView subtotalTxt = itemCardView.findViewById(R.id.subtotal_text);
+        TextView nameTxt = itemCardView.findViewById(R.id.name_text);
         int decrement_button_id = findViewById(R.id.decrement_button).getId();
         int increment_button_id = findViewById(R.id.increment_button).getId();
 
@@ -134,14 +134,14 @@ public class MenuActivity extends AppCompatActivity {
      */
     private void updatePriceDisplay(int quantity, TextView priceTxt, TextView subtotalTxt) {
         // Retrieve price
-        String k = priceTxt.getText().toString();
-        String priceStr = k.substring(1); // Separate $ and price number
+        String priceString = priceTxt.getText().toString();
+        String priceStr = priceString.substring(1); // Separate $ and price number
         double price = Double.parseDouble(priceStr);
 
         // Compute, format and display
         double subtotal = price * quantity;
         String formattedSubtotal = String.format("%.2f", subtotal);
-        subtotalTxt.setText("$" + formattedSubtotal);
+        subtotalTxt.setText(getString(R.string.dollar_sign) + formattedSubtotal);
     }
 
     /**

@@ -6,7 +6,6 @@
     <string name="dollar_sign">$</string>
     <string name="tps_rate">0.05</string>
     <string name="tpq_rate">0.09975</string>
-    <string name="subtotal_default_value">$0.00</string>
     <string name="quantity_label">Quantity:</string>
     <string name="minus_symbol">-</string>
     <string name="plus_symbol">+</string>
@@ -31,6 +30,7 @@
     <string name="price3">$9.99</string>
     <string name="description3">A spicy and yet sour taste, this soup will be sure to provide an
         extremely spicy taste. Yet, it has rich flavours.</string>
+
     <string name="main_description">Enjoy shopping for food from the comfort of your own home! This is MahShop.</string>
     <string name="begin_button_text">Begin</string>
     <string name="welcome_msg">Welcome!</string>
@@ -39,5 +39,8 @@
     <string name="unit_price_header">Unit price</string>
     <string name="quantity_header">Quantity</string>
     <string name="cost_header">Cost</string>
+    <string name="total_label">Total:</string>
+    <string name="tpq_label">TPQ:</string>
+    <string name="tps_label">TPS:</string>
 
 </resources>
