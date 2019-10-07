@@ -42,5 +42,6 @@
     <string name="total_label">Total:</string>
     <string name="tpq_label">TPQ:</string>
     <string name="tps_label">TPS:</string>
+    <string name="title_activity_menu">MenuActivity</string>
 
 </resources>
