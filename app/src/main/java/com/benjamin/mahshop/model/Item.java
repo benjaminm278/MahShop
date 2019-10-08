@@ -1,12 +1,14 @@
-package com.benjamin.mahshop;
+package com.benjamin.mahshop.model;
 
+import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 public class Item extends Object implements Parcelable {
     private String name;
+    private String description;
     private double price;
+    private String itemImg;
     private int quantity;
     private double subTotal;
 
@@ -21,6 +23,23 @@ public class Item extends Object implements Parcelable {
     public Item(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
+        this.subTotal = price * quantity;
+    }
+
+    /**
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @param itemImg
+     * @param quantity
+     */
+    public Item(String name, String description, double price, String itemImg, int quantity) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.itemImg = itemImg;
         this.quantity = quantity;
         this.subTotal = price * quantity;
     }

@@ -2,7 +2,8 @@ package com.benjamin.mahshop;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+
+import com.benjamin.mahshop.model.Item;
 
 import java.util.ArrayList;
 
