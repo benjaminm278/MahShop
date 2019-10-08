@@ -51,7 +51,6 @@ public class Item extends Object implements Parcelable {
     public void setQuantity(int quantity) {
         if (quantity > 0) {
             this.quantity = quantity;
-            subTotal = price * quantity; // Updates subtotal of item
         }
     }
 
@@ -78,6 +77,10 @@ public class Item extends Object implements Parcelable {
 
     public int getQuantity() {
         return this.quantity;
+    }
+
+    public double getSubTotal() {
+        return this.quantity * this.price;
     }
 
     /**

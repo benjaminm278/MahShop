@@ -48,7 +48,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     /**
-     *
+     * Adds stuff to card
      * @param holder
      * @param position
      */
@@ -57,9 +57,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Item x = mListOfItems.get(position);
         Log.d("Pass", "you did it!");
         holder.nameTxt.setText(x.getName());
+        holder.priceTxt.setText(String.format("$%s", Double.toString(x.getPrice())));
         holder.descriptionTxt.setText(x.getDescription());
-        holder.priceTxt.setText(Double.toString(x.getPrice()));
         holder.quantityTxt.setText(x.getQuantity() + "");
+        holder.subTotalTxt.setText(String.format("$%s", Double.toString(x.getSubTotal())));
     }
 
     /**
@@ -81,6 +82,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public final TextView priceTxt;
         public final ImageView itemImg;
         public final TextView quantityTxt;
+        public final TextView subTotalTxt;
         final ProductAdapter mAdapter;
         /**
          * Creates
@@ -92,9 +94,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             c = itemView.findViewById(R.id.ItemCardView);
             nameTxt = c.findViewById(R.id.name_text);
             descriptionTxt = c.findViewById(R.id.description_text);
-            priceTxt = c.findViewById(R.id.description_text);
+            priceTxt = c.findViewById(R.id.price_text);
             itemImg = c.findViewById(R.id.imageView);
             quantityTxt = c.findViewById(R.id.quantity_text);
+            subTotalTxt = c.findViewById(R.id.subtotal_text);
             this.mAdapter = adapter;
         }
     }
