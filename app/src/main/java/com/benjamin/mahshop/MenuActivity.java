@@ -41,17 +41,17 @@ public class MenuActivity extends AppCompatActivity {
             listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
                     getResources().getString(R.string.description1), // Description
                     Double.parseDouble(getResources().getString(R.string.price1)), // Price
-                    "bentoboxsushi.jpg", // Image link
+                    R.drawable.bentoboxsushi, // Image link
                     Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
             listOfItems.add(new Item(getResources().getString(R.string.name2), // Title
                     getResources().getString(R.string.description2), // Description
                     Double.parseDouble(getResources().getString(R.string.price2)), // Price
-                    "dragonsushiroll.jpg", // Image link
+                    R.drawable.dragonsushiroll, // Image link
                     Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
             listOfItems.add(new Item(getResources().getString(R.string.name3), // Title
                     getResources().getString(R.string.description3), // Description
                     Double.parseDouble(getResources().getString(R.string.price3)), // Price
-                    "spicyandsoursoup.jpg", // Image link
+                    R.drawable.spicyandsoursoup, // Image link
                     Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
         }
         catch (Exception e) {

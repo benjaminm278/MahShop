@@ -8,7 +8,7 @@ public class Item extends Object implements Parcelable {
     private String name;
     private String description;
     private double price;
-    private String itemImg;
+    private int imageId;
     private int quantity;
     private double subTotal;
 
@@ -32,14 +32,14 @@ public class Item extends Object implements Parcelable {
      * @param name
      * @param description
      * @param price
-     * @param itemImg
+     * @param imageId
      * @param quantity
      */
-    public Item(String name, String description, double price, String itemImg, int quantity) {
+    public Item(String name, String description, double price, int imageId, int quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.itemImg = itemImg;
+        this.imageId = imageId;
         this.quantity = quantity;
         this.subTotal = price * quantity;
     }
@@ -71,8 +71,8 @@ public class Item extends Object implements Parcelable {
         return this.price;
     }
 
-    public String getImage() {
-        return this.itemImg;
+    public int getImageId() {
+        return this.imageId;
     }
 
     public int getQuantity() {
