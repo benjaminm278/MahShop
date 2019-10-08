@@ -8,6 +8,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
@@ -55,6 +57,15 @@ public class MenuActivity extends AppCompatActivity {
         catch (Exception e) {
             Log.d("test", "here2");
         }
+
+        // Retrieve recycler view
+        RecyclerView rc = findViewById(R.id.itemRecyclerView);
+        // Create adapter
+        ProductAdapter pa = new ProductAdapter(this, listOfItems);
+        // Connect adapter to RecyclerView
+        rc.setAdapter(pa);
+        // Set layout manager
+        rc.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
