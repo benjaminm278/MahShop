@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -75,7 +76,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     /*********************
      * View holder class *
      *********************/
-    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final CardView c;
         public final TextView nameTxt;
         public final TextView descriptionTxt;
@@ -99,11 +100,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             quantityTxt = c.findViewById(R.id.quantity_text);
             subTotalTxt = c.findViewById(R.id.subtotal_text);
             this.mAdapter = adapter;
+
+            // Sets on click listeners
+            c.findViewById(R.id.increment_button).setOnClickListener(this);
+            c.findViewById(R.id.decrement_button).setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Log.d("abc", v.getId() + "");
+            Log.d("Abc123", v.getId() + " Success!!!");
         }
     }
 }
