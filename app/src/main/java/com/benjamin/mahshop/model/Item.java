@@ -3,6 +3,7 @@ package com.benjamin.mahshop.model;
 import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 public class Item extends Object implements Parcelable {
     private String name;
@@ -24,7 +25,6 @@ public class Item extends Object implements Parcelable {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.subTotal = price * quantity;
     }
 
     /**
@@ -41,7 +41,6 @@ public class Item extends Object implements Parcelable {
         this.price = price;
         this.imageId = imageId;
         this.quantity = quantity;
-        this.subTotal = price * quantity;
     }
 
     /**
@@ -54,6 +53,16 @@ public class Item extends Object implements Parcelable {
         }
     }
 
+    public void increaseQuantityByOne() {
+        Log.d("incre", "here");
+        quantity++;
+    }
+
+    public void decreaseQuantityByOne() {
+        if (quantity > 0) {
+            quantity--;
+        }
+    }
 
     /**
      * Returns name of item

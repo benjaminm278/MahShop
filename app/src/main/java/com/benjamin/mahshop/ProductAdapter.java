@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,7 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.priceTxt.setText(String.format("$%s", Double.toString(x.getPrice())));
         holder.descriptionTxt.setText(x.getDescription());
         holder.quantityTxt.setText(x.getQuantity() + "");
-        holder.subTotalTxt.setText(String.format("$%s", Double.toString(x.getSubTotal())));
+        holder.subTotalTxt.setText(String.format("$%.2f", x.getSubTotal()));
     }
 
     /**
@@ -84,6 +85,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public final ImageView itemImg;
         public final TextView quantityTxt;
         public final TextView subTotalTxt;
+        public final Button incrementBtn;
+        public final Button decrementBtn;
         final ProductAdapter mAdapter;
         /**
          * Creates
@@ -101,14 +104,49 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             subTotalTxt = c.findViewById(R.id.subtotal_text);
             this.mAdapter = adapter;
 
+            incrementBtn = c.findViewById(R.id.increment_button);
+            decrementBtn = c.findViewById(R.id.decrement_button);
+
             // Sets on click listeners
-            c.findViewById(R.id.increment_button).setOnClickListener(this);
-            c.findViewById(R.id.decrement_button).setOnClickListener(this);
+            incrementBtn.setOnClickListener(this);
+            decrementBtn.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             Log.d("Abc123", v.getId() + " Success!!!");
+
+            int btnId = v.getId();
+            int y = getLayoutPosition();
+            Item a = mListOfItems.get(y);
+
+            // Checks which button was pressed
+            if (btnId == incrementBtn.getId()) {
+                incrementQuantity(a);
+                changeSubtotal(a);
+            }
+            else if (btnId == decrementBtn.getId()) {
+                decrementQuantity(a);
+                changeSubtotal(a);
+            }
+        }
+
+        public void incrementQuantity(Item item) {
+            // Update internally
+            item.increaseQuantityByOne();
+
+            // Update quantity display
+            quantityTxt.setText(item.getQuantity() + "");
+        }
+
+        public void changeSubtotal(Item y) {
+            // Update subtotal display
+            subTotalTxt.setText("$" + String.format("%.2f", y.getSubTotal()));
+        }
+
+        public void decrementQuantity(Item item) {
+            item.decreaseQuantityByOne();
+            quantityTxt.setText(item.getQuantity() + "");
         }
     }
 }
