@@ -75,7 +75,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     /*********************
      * View holder class *
      *********************/
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public final CardView c;
         public final TextView nameTxt;
         public final TextView descriptionTxt;
@@ -99,6 +99,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             quantityTxt = c.findViewById(R.id.quantity_text);
             subTotalTxt = c.findViewById(R.id.subtotal_text);
             this.mAdapter = adapter;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("abc", v.getId() + "");
         }
     }
 }
