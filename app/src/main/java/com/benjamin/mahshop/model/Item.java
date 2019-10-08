@@ -64,6 +64,22 @@ public class Item extends Object implements Parcelable {
         return this.name;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public String getImage() {
+        return this.itemImg;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     /**
      * Compares two items
      * @param o

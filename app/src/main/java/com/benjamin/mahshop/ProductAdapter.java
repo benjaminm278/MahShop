@@ -56,7 +56,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
         Item x = mListOfItems.get(position);
         Log.d("Pass", "you did it!");
-        holder.nameTxt.setText("Abcdefg");
+        holder.nameTxt.setText(x.getName());
+        holder.descriptionTxt.setText(x.getDescription());
+        holder.priceTxt.setText(Double.toString(x.getPrice()));
+        holder.quantityTxt.setText(x.getQuantity() + "");
     }
 
     /**
