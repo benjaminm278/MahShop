@@ -12,6 +12,7 @@ public class Item extends Object implements Parcelable {
     private int imageId;
     private int quantity;
     private double subTotal;
+    private int menuIndex;
 
     private char delimiter = '-';
 
@@ -35,12 +36,13 @@ public class Item extends Object implements Parcelable {
      * @param imageId
      * @param quantity
      */
-    public Item(String name, String description, double price, int imageId, int quantity) {
+    public Item(String name, String description, double price, int imageId, int quantity, int menuIndex) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.imageId = imageId;
         this.quantity = quantity;
+        this.menuIndex = menuIndex;
     }
 
     /**

@@ -20,19 +20,18 @@ import com.benjamin.mahshop.model.shopCart;
 import java.util.LinkedList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
-    private LinkedList<Item> mListOfItems;
+    //private LinkedList<Item> mListOfItems;
     private LayoutInflater mInflater;
-    private shopCart c;
+    private shopCart cart;
 
     /**
      * Creates an adapter by setting the layout inflater and list of items
      * @param ctx
-     * @param listOfItems
      */
-    public ProductAdapter(Context ctx, LinkedList<Item> listOfItems, shopCart c) {
+    public ProductAdapter(Context ctx, shopCart c) {
         mInflater = LayoutInflater.from(ctx); // Inflates adapter
-        this.mListOfItems = listOfItems; // Gets list of items
-        this.c = c;
+        //this.mListOfItems = listOfItems; // Gets list of items
+        this.cart = c;
     }
 
     /**
@@ -59,7 +58,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      */
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
-        Item x = mListOfItems.get(position);
+        //Item x = mListOfItems.get(position);
+        Item x = cart.getItemByMenuIndex(position);
         holder.itemImg.setBackgroundResource(x.getImageId());
         holder.nameTxt.setText(x.getName());
         holder.priceTxt.setText(String.format("$%s", Double.toString(x.getPrice())));
@@ -74,7 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      */
     @Override
     public int getItemCount() {
-        return mListOfItems.size();
+        return cart.getNumberOfItems();
     }
 
     /*********************
@@ -121,8 +121,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             int btnId = v.getId();
             int y = getLayoutPosition();
-            Item a = mListOfItems.get(y);
-
+            //Item a = mListOfItems.get(y);
+            Item a = cart.getItemByMenuIndex(y);
             // Checks which button was pressed
             if (btnId == incrementBtn.getId()) {
                 incrementQuantity(a);

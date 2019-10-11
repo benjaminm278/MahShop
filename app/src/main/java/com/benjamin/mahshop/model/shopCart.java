@@ -24,7 +24,6 @@ public class shopCart implements Parcelable {
      */
     public void addItem(Item i) {
         boolean found = false;
-
         // Iterates through cart
         for (int j = 0; j < items.size(); j++) {
             // Compares current item with each item in cart
@@ -93,6 +92,10 @@ public class shopCart implements Parcelable {
         }
 
         return -1;
+    }
+
+    public Item getItemByMenuIndex(int index) {
+        return items.get(index);
     }
     /**
      * Retrieves an item string at a given index
