@@ -47,11 +47,15 @@ public class shopCart implements Parcelable {
 
     /**
      *
-     * @param name
-     * @param price
-     * @param quantity
      */
-    public void decreaseItemCount(String name, double price, int quantity) {
+    public void decreaseItemCount(Item i) {
+        i.decreaseQuantityByOne();
+
+        if (i.getQuantity() <= 0) {
+            // Remove from list
+            items.remove(i);
+        }
+        /*
         Item i = new Item(name, price, quantity);
 
         if (items.contains(i)) {
@@ -69,7 +73,7 @@ public class shopCart implements Parcelable {
             }
         }
 
-        grandSubtotal -= price;
+        grandSubtotal -= price;*/
     }
 
     public double getTotal() {
