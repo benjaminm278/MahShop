@@ -16,11 +16,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
 public class MenuActivity extends AppCompatActivity {
     private LinkedList<Item> listOfItems = new LinkedList();
+    private final int EXPRESS_COST = 50;
+    private final int REGULAR_COST = 10;
+    private final int NO_HURRY_COST = 0;
+    private final String SHIPPING_EXP_OPT = String.format("Express (+$%d)", EXPRESS_COST);
+    private final String SHIPPING_REG_OPT = String.format("Regular (+$%d)", REGULAR_COST);
+    private final String SHIPPING_NONE_OPT = String.format("No hurry (+$%d)", NO_HURRY_COST);
+    CharSequence[] shippingOptions = {SHIPPING_EXP_OPT, SHIPPING_REG_OPT, SHIPPING_NONE_OPT};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +80,36 @@ public class MenuActivity extends AppCompatActivity {
         rc.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * Displays alert containing shipping options
+     * @param view
+     */
     public void showShippingAlert(View view) {
+        // Instantiates a new alert dialog builder
         AlertDialog.Builder a = new AlertDialog.Builder(this);
 
+        // Title
         a.setTitle("Shipping Options");
 
+        // Set choices
+        a.setSingleChoiceItems(shippingOptions, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                // Iterate through each choice
+                switch (item) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
+
+                Log.d("shipcase",item + "");
+            }
+        });
+
+        // Options at bottom of alert
         a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -89,6 +123,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        // Display
         a.show();
     }
 }
