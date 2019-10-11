@@ -1,34 +1,34 @@
 package com.benjamin.mahshop;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.benjamin.mahshop.model.Item;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.benjamin.mahshop.model.shopCart;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.LinkedList;
 
 public class MenuActivity extends AppCompatActivity {
     private LinkedList<Item> listOfItems = new LinkedList();
-    private final int EXPRESS_COST = 50;
-    private final int REGULAR_COST = 10;
-    private final int NO_HURRY_COST = 0;
-    private final String SHIPPING_EXP_OPT = String.format("Express (+$%d)", EXPRESS_COST);
-    private final String SHIPPING_REG_OPT = String.format("Regular (+$%d)", REGULAR_COST);
-    private final String SHIPPING_NONE_OPT = String.format("No hurry (+$%d)", NO_HURRY_COST);
+    private Double currentShippingCost = null;
+    private final Double EXPRESS_COST = 50.00;
+    private final Double REGULAR_COST = 10.00;
+    private final Double NO_HURRY_COST = 0.00;
+    private final String SHIPPING_EXP_OPT = String.format("Express (+$%.2f)", EXPRESS_COST);
+    private final String SHIPPING_REG_OPT = String.format("Regular (+$%.2f)", REGULAR_COST);
+    private final String SHIPPING_NONE_OPT = String.format("No hurry (+$%.2f)", NO_HURRY_COST);
     CharSequence[] shippingOptions = {SHIPPING_EXP_OPT, SHIPPING_REG_OPT, SHIPPING_NONE_OPT};
+    private shopCart cart = new shopCart();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,11 @@ public class MenuActivity extends AppCompatActivity {
         Log.d("test", "here");
 
         try {
+            cart.addItem(new Item(getResources().getString(R.string.name1), // Title
+                    getResources().getString(R.string.description1), // Description
+                    Double.parseDouble(getResources().getString(R.string.price1)), // Price
+                    R.drawable.bentoboxsushi, // Image link
+                    Integer.parseInt(getResources().getString(R.string.quantity_default_value))));
             // Add items to list
             listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
                     getResources().getString(R.string.description1), // Description
@@ -73,7 +78,7 @@ public class MenuActivity extends AppCompatActivity {
         // Retrieve recycler view
         RecyclerView rc = findViewById(R.id.itemRecyclerView);
         // Create adapter
-        ProductAdapter pa = new ProductAdapter(this, listOfItems);
+        ProductAdapter pa = new ProductAdapter(this, listOfItems, cart);
         // Connect adapter to RecyclerView
         rc.setAdapter(pa);
         // Set layout manager
@@ -98,25 +103,28 @@ public class MenuActivity extends AppCompatActivity {
                 // Iterate through each choice
                 switch (item) {
                     case 0:
+                        currentShippingCost = EXPRESS_COST;
                         break;
                     case 1:
+                        currentShippingCost = REGULAR_COST;
                         break;
                     case 2:
+                        currentShippingCost = NO_HURRY_COST;
                         break;
                 }
-
-                Log.d("shipcase",item + "");
             }
         });
 
         // Options at bottom of alert
-        a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        a.setPositiveButton("Checkout", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                if (currentShippingCost != null) {
+                    openCheckoutActivity();
+                }
             }
         });
-        a.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        a.setNegativeButton("Go back", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -125,5 +133,14 @@ public class MenuActivity extends AppCompatActivity {
 
         // Display
         a.show();
+    }
+
+    /**
+     * Opens the checkout activity
+     */
+    public void openCheckoutActivity() {
+        Intent checkOutActivity = new Intent(this, CheckoutActivity.class);
+        checkOutActivity.putExtra("CART", listOfItems);
+        startActivity(checkOutActivity);
     }
 }

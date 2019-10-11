@@ -1,9 +1,9 @@
-package com.benjamin.mahshop;
+package com.benjamin.mahshop.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.benjamin.mahshop.model.Item;
+import com.benjamin.mahshop.R;
 
 import java.util.ArrayList;
 
@@ -21,17 +21,8 @@ public class shopCart implements Parcelable {
 
     /**
      * Adds an item to the cart
-     * @param name
-     * @param price
-     * @param quantity
      */
-    public void addItem(String name, double price, int quantity) {
-        // Creates new item, but is not added in cart yet
-        Item i = new Item(name, price, quantity);
-
-        // Increase quantity
-        quantity++;
-
+    public void addItem(Item i) {
         boolean found = false;
 
         // Iterates through cart
@@ -39,7 +30,7 @@ public class shopCart implements Parcelable {
             // Compares current item with each item in cart
             if (i.equals(items.get(j))) {
                 // Changes quantity
-                items.get(items.indexOf(i)).setQuantity(quantity);
+                items.get(items.indexOf(i)).increaseQuantityByOne();
                 found = true;
             }
         }
@@ -47,11 +38,11 @@ public class shopCart implements Parcelable {
         // Item doesn't exist?
         if (!found) {
             // Adds new item to cart with new quantity
-            items.add(new Item(name, price, quantity));
+            items.add(i);
         }
 
         // Updates the grand subtotal of the cart
-        grandSubtotal += price;
+        grandSubtotal += i.getPrice();
     }
 
     /**

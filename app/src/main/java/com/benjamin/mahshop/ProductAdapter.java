@@ -15,21 +15,24 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.benjamin.mahshop.model.Item;
+import com.benjamin.mahshop.model.shopCart;
 
 import java.util.LinkedList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private LinkedList<Item> mListOfItems;
     private LayoutInflater mInflater;
+    private shopCart c;
 
     /**
      * Creates an adapter by setting the layout inflater and list of items
      * @param ctx
      * @param listOfItems
      */
-    public ProductAdapter(Context ctx, LinkedList<Item> listOfItems) {
+    public ProductAdapter(Context ctx, LinkedList<Item> listOfItems, shopCart c) {
         mInflater = LayoutInflater.from(ctx); // Inflates adapter
         this.mListOfItems = listOfItems; // Gets list of items
+        this.c = c;
     }
 
     /**

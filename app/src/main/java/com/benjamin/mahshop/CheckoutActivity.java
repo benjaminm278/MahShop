@@ -7,16 +7,17 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.DecimalFormat;
+import com.benjamin.mahshop.model.Item;
+import com.benjamin.mahshop.model.shopCart;
+
+import java.util.LinkedList;
 
 public class CheckoutActivity extends AppCompatActivity {
     private TableLayout billLayout;
     private Intent menuIntent;
-    private shopCart cart;
     private final double TPS_RATE = 0.05;
     private final double TPQ_RATE = 0.09975;
 
@@ -25,7 +26,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private double tpq;
     private double total;
 
-    public final String EXTRA_CART = "com.benjamin.mahshop.extra.CART";
+    private LinkedList<Item> cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +35,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Retrieve previous activity (menu) and its passed data
         menuIntent = getIntent();
-        cart = menuIntent.getParcelableExtra(EXTRA_CART);
+        cart = (LinkedList) menuIntent.getExtras().get("CART");
 
         // Fill bill contents
         writeBill();
-        fillAmounts();
+        //fillAmounts();
     }
 
     /**
@@ -49,13 +50,13 @@ public class CheckoutActivity extends AppCompatActivity {
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
 
+        Log.d("Here2", "here");
         // Iterates for each row
-        for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
-            // Retrieve item string and splits each item field by its delimiter
-            String[] itemData = cart.getItemString(itemIndex).split("-");
-
+        for (int itemIndex = 0; itemIndex < cart.size(); itemIndex++) {
             // Creates new table row
             TableRow tr = new TableRow(this);
+
+            Log.d("Here3", "here");
 
             // Creates new textviews for each field
             TextView item_name_table_cell = new TextView(this);
@@ -64,10 +65,10 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView subtotal_table_cell = new TextView(this);
 
             // Fills textviews
-            item_name_table_cell.setText(itemData[0]); // Item name
-            unit_price_table_cell.setText(getString(R.string.dollar_sign) + itemData[1]); // Unit price
-            quantity_table_cell.setText(itemData[2]); // Quantity
-            subtotal_table_cell.setText(getString(R.string.dollar_sign) + itemData[3]); // Subtotal
+            item_name_table_cell.setText(cart.get(itemIndex).getName()); // Item name
+            unit_price_table_cell.setText(getString(R.string.dollar_sign) + cart.get(itemIndex).getPrice()); // Unit price
+            quantity_table_cell.setText(cart.get(itemIndex).getQuantity() + ""); // Quantity
+            subtotal_table_cell.setText(getString(R.string.dollar_sign) + cart.get(itemIndex).getSubTotal()); // Subtotal
 
             // Adds table cells to row
             tr.addView(item_name_table_cell);
@@ -99,7 +100,7 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     private void setSubtotal() {
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
-        subtotal = cart.getTotal();
+        subtotal = 11.11;
         setAmountDisplay(subtotal, subTotalTxt);
     }
 
