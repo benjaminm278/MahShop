@@ -1,13 +1,16 @@
 package com.benjamin.mahshop;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.benjamin.mahshop.model.Item;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+*/
         Log.d("test", "here");
 
         try {
@@ -68,4 +71,24 @@ public class MenuActivity extends AppCompatActivity {
         rc.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    public void showShippingAlert(View view) {
+        AlertDialog.Builder a = new AlertDialog.Builder(this);
+
+        a.setTitle("Shipping Options");
+
+        a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        a.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        a.show();
+    }
 }
