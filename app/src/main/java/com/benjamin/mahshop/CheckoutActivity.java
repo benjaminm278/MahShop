@@ -2,7 +2,6 @@ package com.benjamin.mahshop;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -26,7 +25,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private double tpq;
     private double total;
 
-    private LinkedList<Item> cart;
+    private shopCart cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Retrieve previous activity (menu) and its passed data
         menuIntent = getIntent();
-        cart = (LinkedList) menuIntent.getExtras().get("CART");
+        cart = menuIntent.getParcelableExtra("CART");
 
         // Fill bill contents
         writeBill();
@@ -50,13 +49,11 @@ public class CheckoutActivity extends AppCompatActivity {
         billLayout = findViewById(R.id.billTable);
         menuIntent = getIntent();
 
-        Log.d("Here2", "here");
         // Iterates for each row
-        for (int itemIndex = 0; itemIndex < cart.size(); itemIndex++) {
+        for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
+            String[] itemData = cart.getItemByMenuIndex(itemIndex).toString().split("-");
             // Creates new table row
             TableRow tr = new TableRow(this);
-
-            Log.d("Here3", "here");
 
             // Creates new textviews for each field
             TextView item_name_table_cell = new TextView(this);
@@ -65,10 +62,10 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView subtotal_table_cell = new TextView(this);
 
             // Fills textviews
-            item_name_table_cell.setText(cart.get(itemIndex).getName()); // Item name
-            unit_price_table_cell.setText(getString(R.string.dollar_sign) + cart.get(itemIndex).getPrice()); // Unit price
-            quantity_table_cell.setText(cart.get(itemIndex).getQuantity() + ""); // Quantity
-            subtotal_table_cell.setText(getString(R.string.dollar_sign) + cart.get(itemIndex).getSubTotal()); // Subtotal
+            item_name_table_cell.setText(itemData[0]); // Item name
+            unit_price_table_cell.setText(getString(R.string.dollar_sign) + itemData[1]); // Unit price
+            quantity_table_cell.setText(itemData[2]); // Quantity
+            subtotal_table_cell.setText(getString(R.string.dollar_sign) + itemData[3]); // Subtotal
 
             // Adds table cells to row
             tr.addView(item_name_table_cell);
@@ -100,7 +97,7 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     private void setSubtotal() {
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
-        subtotal = 11.11;
+        subtotal = cart.getTotal();
         setAmountDisplay(subtotal, subTotalTxt);
     }
 

@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
 public class MenuActivity extends AppCompatActivity {
-    private LinkedList<Item> listOfItems = new LinkedList();
+    //private LinkedList<Item> listOfItems = new LinkedList();
     private Double currentShippingCost = null;
     private final Double EXPRESS_COST = 50.00;
     private final Double REGULAR_COST = 10.00;
@@ -67,7 +68,7 @@ public class MenuActivity extends AppCompatActivity {
                     R.drawable.spicyandsoursoup, // Image link
                     Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
                     2));
-
+/*
             // Add items to list
             listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
                     getResources().getString(R.string.description1), // Description
@@ -83,7 +84,7 @@ public class MenuActivity extends AppCompatActivity {
                     getResources().getString(R.string.description3), // Description
                     Double.parseDouble(getResources().getString(R.string.price3)), // Price
                     R.drawable.spicyandsoursoup, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)), 2)); // Quantity
+                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)), 2)); // Quantity*/
         }
         catch (Exception e) {
             Log.d("test", "here2");
@@ -154,7 +155,7 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void openCheckoutActivity() {
         Intent checkOutActivity = new Intent(this, CheckoutActivity.class);
-        checkOutActivity.putExtra("CART", listOfItems);
+        checkOutActivity.putExtra("CART", cart);
         startActivity(checkOutActivity);
     }
 }
