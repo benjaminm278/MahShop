@@ -13,7 +13,7 @@ This application contains two menus: the action menu and the list menu.
 
 <b>Action menu</b><br>
 The action menu contains the bill icon which lets the user view a summary of what's in their cart.
-When trying to view the items they've added into the cart, it often requires scrolling up, down, left, right, you name it. Scrolling all over the place to check and keep track can be a real pain (although your finger will get a good workout!). Say bye-bye to constant scrolling and say hello to the <b>view bill<b> feature. Just click the bill icon and you will get an overview of the items that are currently in the cart! You'll be able to see all of the items along with the amount of that item and the subtotal. Easy, fast and simple! (One reason to use this menu feature on the action menu).
+When trying to view the items they've added into the cart, it often requires scrolling up, down, left, right, you name it. Scrolling all over the place to check and keep track can be a real pain (although your finger will get a good workout!). Say bye-bye to constant scrolling and say hello to the <b>view bill</b> feature. Just click the bill icon and you will get an overview of the items that are currently in the cart! You'll be able to see all of the items along with the amount of that item and the subtotal. Easy, fast and simple! (One reason to use this menu feature on the action menu).
 
 <b>List menu</b><br>
 The list menu contains two options: Costs and empty cart
