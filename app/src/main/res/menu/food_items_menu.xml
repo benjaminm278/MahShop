@@ -5,4 +5,5 @@
 
     <item android:title="Your shopping cart"/>
     <item android:title="Costs"/>
+    <item android:title="Empty cart"/>
 </menu>
