@@ -30,6 +30,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:onClick="showShippingAlert"
         app:backgroundTint="#1BC8FC"
-        app:srcCompat="@drawable/ic_fab_icon" />
+        app:srcCompat="@drawable/ic_fab_icon_menu_activity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
