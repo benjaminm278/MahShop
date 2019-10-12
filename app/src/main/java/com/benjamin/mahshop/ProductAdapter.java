@@ -122,8 +122,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             int btnId = v.getId();
             int y = getLayoutPosition();
-            //Item a = mListOfItems.get(y);
-            Item a = cart.getItemWithMenuIndex(y);
+            Item a = mListOfItems.get(y);
+            //Item a = cart.getItemWithMenuIndex(y);
             // Checks which button was pressed
             if (btnId == incrementBtn.getId()) {
                 incrementQuantity(a);
