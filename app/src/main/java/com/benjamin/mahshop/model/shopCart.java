@@ -58,14 +58,28 @@ public class shopCart implements Parcelable {
         grandSubtotal -= i.getPrice();
     }
 
+    /**
+     *
+     * @return
+     */
     public double getTotal() {
         return grandSubtotal;
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public boolean contains(String name) {
         return indexOf(name) != -1; // Method below
     }
 
+    /**
+     * Retrieves the index of an item given the name
+     * @param name
+     * @return
+     */
     public int indexOf(String name) {
         // Iterate through each item in cart and compare names
         for (int i = 0; i < items.size(); i++) {
@@ -77,6 +91,11 @@ public class shopCart implements Parcelable {
         return -1;
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Item getItemWithMenuIndex(int index) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getMenuIndex() == index) {
@@ -85,6 +104,7 @@ public class shopCart implements Parcelable {
         }
         return null;
     }
+
     /**
      * Retrieves an item string at a given index
      * @param index
@@ -103,6 +123,13 @@ public class shopCart implements Parcelable {
         return items.size();
     }
 
+    /**********************
+     * Parcelable methods *
+     **********************/
+    /**
+     *
+     * @param in
+     */
     protected shopCart(Parcel in) {
         grandSubtotal = in.readDouble();
         items = in.readArrayList(Item.class.getClassLoader());

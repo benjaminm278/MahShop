@@ -69,7 +69,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Double subTotal = 0.00;
         if (cart.contains(x.getName())) {
             quantity = cart.getItemWithMenuIndex(position).getQuantity();
-            subTotal = x.getSubTotal();
+            subTotal = cart.getItemWithMenuIndex(position).getSubTotal();
         }
 
         holder.quantityTxt.setText(quantity + ""); // Check

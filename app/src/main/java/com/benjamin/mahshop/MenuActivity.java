@@ -1,14 +1,11 @@
 package com.benjamin.mahshop;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.benjamin.mahshop.model.Item;
 import com.benjamin.mahshop.model.shopCart;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.LinkedList;
 
@@ -78,8 +76,11 @@ public class MenuActivity extends AppCompatActivity {
         rc.setAdapter(pa);
         // Set layout manager
         rc.setLayoutManager(new LinearLayoutManager(this));
-
-        Log.d("toasty", pa.getItemCount() + "");
+        /*RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams
+                (RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+        rc.setLayoutParams(rllp);
+        */Log.d("toasty", pa.getItemCount() + "");
     }
 
     /**
