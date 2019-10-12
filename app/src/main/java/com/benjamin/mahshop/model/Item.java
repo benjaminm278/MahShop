@@ -1,9 +1,7 @@
 package com.benjamin.mahshop.model;
 
-import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 public class Item extends Object implements Parcelable {
     private String name;
