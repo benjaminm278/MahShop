@@ -228,4 +228,39 @@ public class MenuActivity extends AppCompatActivity {
         // Set layout manager
         rc.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    /**
+     * Displays current items in cart
+     * @param item
+     */
+    public void viewCurrentCart(MenuItem item) {
+        // Instantiates a new alert dialog builder
+        AlertDialog.Builder a = new AlertDialog.Builder(this);
+
+        // Title
+        a.setTitle("Currently in cart:");
+
+        if (cart.getNumberOfItems() != 0) {
+            String itemNames = "";
+            // Get names of items
+            for (int i = 0; i < cart.getNumberOfItems(); i++) {
+                Item it = cart.getItem(i);
+                itemNames += it.getQuantity() + " " + it.getName() + " ($" + it.getSubTotal() + ")\n";
+            }
+
+            a.setMessage(itemNames);
+        }
+        else {
+            a.setMessage("Nothing in the cart\n");
+        }
+
+        // Options at bottom of alert
+        a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
+        });
+
+        // Display
+        a.show();
+    }
 }

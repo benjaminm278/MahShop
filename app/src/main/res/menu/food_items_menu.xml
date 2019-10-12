@@ -6,13 +6,18 @@
 
     <item
         android:icon="@drawable/ic_menu_current_bill"
+        android:onClick="viewCurrentCart"
         android:title="Your shopping cart"
         app:showAsAction="always" />
     <item
         android:onClick="displayCosts"
-        android:title="Costs" />
+        android:title="Costs"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
 
     <item
         android:onClick="emptyCart"
-        android:title="Empty cart" />
+        android:title="Empty cart"
+        android:orderInCategory="2"
+        app:showAsAction="never"/>
 </menu>

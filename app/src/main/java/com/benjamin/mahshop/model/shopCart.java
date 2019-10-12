@@ -105,6 +105,9 @@ public class shopCart implements Parcelable {
         return null;
     }
 
+    public Item getItem(int index) {
+        return items.get(index);
+    }
     /**
      * Retrieves an item string at a given index
      * @param index
