@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
+                android:paddingRight="20dp"
                 android:text="@string/default_price_value"
                 android:textSize="18sp" />
 

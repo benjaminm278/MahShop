@@ -16,15 +16,13 @@ import java.util.LinkedList;
 
 public class CheckoutActivity extends AppCompatActivity {
     private TableLayout billLayout;
-    private Intent menuIntent;
     private final double TPS_RATE = 0.05;
     private final double TPQ_RATE = 0.09975;
-
     private double subtotal;
     private double tps;
     private double tpq;
     private double total;
-
+    private Double shippingCost;
     private shopCart cart;
 
     @Override
@@ -33,12 +31,15 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
 
         // Retrieve previous activity (menu) and its passed data
-        menuIntent = getIntent();
-        cart = menuIntent.getParcelableExtra("CART");
+        Bundle menuIntentExtras = getIntent().getExtras();
+        cart = menuIntentExtras.getParcelable("CART");
+        shippingCost = (Double) menuIntentExtras.get("SHIPPING");
+
+        //cart = menuIntent.getParcelableExtra("CART");
 
         // Fill bill contents
         writeBill();
-        //fillAmounts();
+        fillAmounts();
     }
 
     /**
@@ -47,7 +48,7 @@ public class CheckoutActivity extends AppCompatActivity {
     public void writeBill() {
         // Retrieve all necessary variables
         billLayout = findViewById(R.id.billTable);
-        menuIntent = getIntent();
+        //menuIntent = getIntent();
 
         // Iterates for each row
         for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
@@ -83,12 +84,13 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     public void fillAmounts() {
         // Get data
-        menuIntent = getIntent();
+        //menuIntent = getIntent();
 
         // Computes amounts
         setSubtotal();
         setTPSamount();
         setTPQamount();
+        setShippingCost();
         setGrandTotal();
     }
 
@@ -119,12 +121,17 @@ public class CheckoutActivity extends AppCompatActivity {
         setAmountDisplay(tpq, tpqTxt);
     }
 
+    private void setShippingCost() {
+        TextView shipTxt = findViewById(R.id.shipping_textView);
+        setAmountDisplay(shippingCost, shipTxt);
+    }
+
     /**
      * Displays total price
      */
     private void setGrandTotal() {
         TextView totalTxt = findViewById(R.id.total_textview);
-        total = subtotal + tps + tpq;
+        total = subtotal + tps + tpq + shippingCost;
         setAmountDisplay(total, totalTxt);
     }
 
