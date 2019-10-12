@@ -84,9 +84,6 @@ public class CheckoutActivity extends AppCompatActivity {
      * Fills in the fields displaying amounts
      */
     public void fillAmounts() {
-        // Get data
-        //menuIntent = getIntent();
-
         // Computes amounts
         setSubtotal();
         setTPSamount();

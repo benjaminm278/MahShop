@@ -34,6 +34,7 @@ public class MenuActivity extends AppCompatActivity {
     private final String SHIPPING_NONE_OPT = String.format("No hurry (+$%.2f)", NO_HURRY_COST);
     CharSequence[] shippingOptions = {SHIPPING_EXP_OPT, SHIPPING_REG_OPT, SHIPPING_NONE_OPT};
     private shopCart cart = new shopCart();
+    private final String CART_EXTRA = "com.benjamin.mahshop.extra.CART";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,30 +44,60 @@ public class MenuActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         if (savedInstanceState != null) {
-            cart = savedInstanceState.getParcelable("OUTSTATE_CART");
+            cart = savedInstanceState.getParcelable(CART_EXTRA);
         }
 
-        try {
-            // Add items to list
-            listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
-                    getResources().getString(R.string.description1), // Description
-                    Double.parseDouble(getResources().getString(R.string.price1)), // Price
-                    R.drawable.bentoboxsushi, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
-            listOfItems.add(new Item(getResources().getString(R.string.name2), // Title
-                    getResources().getString(R.string.description2), // Description
-                    Double.parseDouble(getResources().getString(R.string.price2)), // Price
-                    R.drawable.dragonsushiroll, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
-            listOfItems.add(new Item(getResources().getString(R.string.name3), // Title
-                    getResources().getString(R.string.description3), // Description
-                    Double.parseDouble(getResources().getString(R.string.price3)), // Price
-                    R.drawable.spicyandsoursoup, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
-        }
-        catch (Exception e) {
-            Log.d("test", "here2");
-        }
+        // Add items to list
+        listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
+                getResources().getString(R.string.description1), // Description
+                Double.parseDouble(getResources().getString(R.string.price1)), // Price
+                R.drawable.bentoboxsushi, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name2), // Title
+                getResources().getString(R.string.description2), // Description
+                Double.parseDouble(getResources().getString(R.string.price2)), // Price
+                R.drawable.dragonsushiroll, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name3), // Title
+                getResources().getString(R.string.description3), // Description
+                Double.parseDouble(getResources().getString(R.string.price3)), // Price
+                R.drawable.spicyandsoursoup, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name4), // Title
+                getResources().getString(R.string.description4), // Description
+                Double.parseDouble(getResources().getString(R.string.price4)), // Price
+                R.drawable.egg_rolls, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name5), // Title
+                getResources().getString(R.string.description5), // Description
+                Double.parseDouble(getResources().getString(R.string.price5)), // Price
+                R.drawable.fried_rice, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name6), // Title
+                getResources().getString(R.string.description6), // Description
+                Double.parseDouble(getResources().getString(R.string.price6)), // Price
+                R.drawable.asian_cuisine_beef, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name7), // Title
+                getResources().getString(R.string.description7), // Description
+                Double.parseDouble(getResources().getString(R.string.price7)), // Price
+                R.drawable.soy_noodles, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name8), // Title
+                getResources().getString(R.string.description8), // Description
+                Double.parseDouble(getResources().getString(R.string.price8)), // Price
+                R.drawable.spicy_dumplings, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name9), // Title
+                getResources().getString(R.string.description9), // Description
+                Double.parseDouble(getResources().getString(R.string.price9)), // Price
+                R.drawable.spicy_noodles_with_pepper, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
+        listOfItems.add(new Item(getResources().getString(R.string.name10), // Title
+                getResources().getString(R.string.description10), // Description
+                Double.parseDouble(getResources().getString(R.string.price10)), // Price
+                R.drawable.stick_rice_thai, // Image link
+                Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
 
         // Retrieve recycler view
         RecyclerView rc = findViewById(R.id.itemRecyclerView);
@@ -87,7 +118,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         // Place data
-        outState.putParcelable("OUTSTATE_CART", cart);
+        outState.putParcelable(CART_EXTRA, cart);
     }
 
     /**
@@ -152,9 +183,7 @@ public class MenuActivity extends AppCompatActivity {
         });
         a.setNegativeButton("Go back", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
+            public void onClick(DialogInterface dialog, int which) {}
         });
 
         // Display

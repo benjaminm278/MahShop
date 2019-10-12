@@ -31,6 +31,41 @@
     <string name="description3">A spicy and yet sour taste, this soup will be sure to provide an
         extremely spicy taste. Yet, it has rich flavours.</string>
 
+    <string name="name4">Egg rolls</string>
+    <string name="price4">9.99</string>
+    <string name="description4">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
+    <string name="name5">Fried Rice</string>
+    <string name="price5">9.99</string>
+    <string name="description5">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
+    <string name="name6">Asian Cuisine Beef</string>
+    <string name="price6">9.99</string>
+    <string name="description6">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
+    <string name="name7">Soy Noodles</string>
+    <string name="price7">9.99</string>
+    <string name="description7">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
+    <string name="name8">Spicy Dumplings</string>
+    <string name="price8">9.99</string>
+    <string name="description8">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
+    <string name="name9">Spicy Noodles</string>
+    <string name="price9">9.99</string>
+    <string name="description9">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
+    <string name="name10">Thai Sticky Rice</string>
+    <string name="price10">9.99</string>
+    <string name="description10">A spicy and yet sour taste, this soup will be sure to provide an
+        extremely spicy taste. Yet, it has rich flavours.</string>
+
     <string name="main_description">Enjoy shopping for food from the comfort of your own home! This is MahShop.</string>
     <string name="begin_button_text">Begin</string>
     <string name="welcome_msg">Welcome!</string>
