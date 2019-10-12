@@ -1,5 +1,6 @@
 package com.benjamin.mahshop;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -103,6 +104,7 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void showShippingAlert(View view) {
+        /*
         // Instantiates a new alert dialog builder
         AlertDialog.Builder a = new AlertDialog.Builder(this);
 
@@ -145,7 +147,8 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         // Display
-        a.show();
+        a.show();*/
+        this.recreate();
     }
 
     /**
