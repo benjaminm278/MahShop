@@ -13,16 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--Menu activity-->
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".endOfCheckoutActivity" />
-        <activity android:name=".CheckoutActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity"/>
+        </activity>
+        <!--end of checkout activity-->
+        <activity android:name=".endOfCheckoutActivity">
+        </activity>
+        <!--Checkout activity-->
+        <activity android:name=".CheckoutActivity"
+            android:parentActivityName=".MenuActivity">
+        </activity>
+        <!--Main activity-->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
