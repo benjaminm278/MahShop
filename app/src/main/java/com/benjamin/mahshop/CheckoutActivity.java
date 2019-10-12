@@ -104,10 +104,10 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     public void fillAmounts() {
         // Computes amounts
+        setShippingCost();
         setSubtotal();
         setTPSamount();
         setTPQamount();
-        setShippingCost();
         setGrandTotal();
     }
 
@@ -116,7 +116,7 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     private void setSubtotal() {
         TextView subTotalTxt = findViewById(R.id.subtotal_textView);
-        subtotal = cart.getTotal();
+        subtotal = cart.getTotal() + shippingCost;
         setAmountDisplay(subtotal, subTotalTxt);
     }
 
@@ -138,6 +138,9 @@ public class CheckoutActivity extends AppCompatActivity {
         setAmountDisplay(tpq, tpqTxt);
     }
 
+    /**
+     * Displays shipping cost
+     */
     private void setShippingCost() {
         TextView shipTxt = findViewById(R.id.shipping_textView);
         setAmountDisplay(shippingCost, shipTxt);
@@ -148,7 +151,7 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     private void setGrandTotal() {
         TextView totalTxt = findViewById(R.id.total_textview);
-        total = subtotal + tps + tpq + shippingCost;
+        total = subtotal + tps + tpq; // Shipping cost included in subtotal
         setAmountDisplay(total, totalTxt);
     }
 

@@ -47,6 +47,28 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/shipping_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:paddingRight="10dp"
+                        android:text="Shipping:"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/shipping_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
                         android:id="@+id/subtotal_label2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -131,28 +153,6 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/shipping_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:paddingRight="10dp"
-                        android:text="Shipping:"
-                        android:textAlignment="textEnd"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/shipping_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="$0.00"
-                        android:textSize="18sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
                         android:id="@+id/total_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -163,7 +163,8 @@
                         android:paddingRight="12sp"
                         android:text="@string/total_label"
                         android:textAlignment="textEnd"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/total_textview"
@@ -174,7 +175,8 @@
                         android:layout_marginEnd="0dp"
                         android:paddingTop="15sp"
                         android:text="@string/default_price_value"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </TableRow>
             </TableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
