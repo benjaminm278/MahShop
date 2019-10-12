@@ -70,7 +70,7 @@
     <string name="main_description">Enjoy shopping for food from the comfort of your own home! This is MahShop.</string>
     <string name="begin_button_text">Begin</string>
     <string name="welcome_msg">Welcome!</string>
-    <string name="thank_you_msg">Thanks for using my shopping application!</string>
+    <string name="thank_you_msg">Thank you for using my shopping application!</string>
     <string name="item_header">Item</string>
     <string name="unit_price_header">Unit price</string>
     <string name="quantity_header">Quantity</string>
@@ -84,10 +84,13 @@
     <string name="button_text_checkout">Checkout</string>
     <string name="button_text_back">Go back</string>
     <string name="toast_need_shipping_option_msg">You must select a shipping option!</string>
-    <string name="title_menu_and_options"><![CDATA[Menu & options]]></string>
+    <string name="title_menu_and_options">Prices and rates</string>
     <string name="header_shipping_rates">Shipping rates:</string>
     <string name="button_text_ok">Ok</string>
     <string name="title_currently_in_cart">Currently in cart:</string>
     <string name="blank_cart_text">Nothing in the cart</string>
+    <string name="title_your_shopping_cart">Your shopping cart</string>
+    <string name="title_costs_summary">Prices and rates</string>
+    <string name="title_empty_cart">Empty your cart</string>
 
 </resources>

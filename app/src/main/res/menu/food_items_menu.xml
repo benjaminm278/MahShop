@@ -7,17 +7,17 @@
     <item
         android:icon="@drawable/ic_menu_current_bill"
         android:onClick="viewCurrentCart"
-        android:title="Your shopping cart"
-        app:showAsAction="always" />
+        android:title="@string/title_your_shopping_cart"
+        app:showAsAction="ifRoom" />
     <item
         android:onClick="displayCosts"
-        android:title="Costs"
+        android:title="@string/title_costs_summary"
         android:orderInCategory="1"
         app:showAsAction="never"/>
 
     <item
         android:onClick="emptyCart"
-        android:title="Empty cart"
+        android:title="@string/title_empty_cart"
         android:orderInCategory="2"
         app:showAsAction="never"/>
 </menu>
