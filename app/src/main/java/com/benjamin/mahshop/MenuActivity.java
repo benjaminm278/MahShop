@@ -35,7 +35,8 @@ public class MenuActivity extends AppCompatActivity {
     private final String SHIPPING_NONE_OPT = String.format("No hurry (+$%.2f)", NO_HURRY_COST);
     CharSequence[] shippingOptions = {SHIPPING_EXP_OPT, SHIPPING_REG_OPT, SHIPPING_NONE_OPT};
     private shopCart cart = new shopCart();
-    private final String CART_EXTRA = "com.benjamin.mahshop.extra.CART";
+    public final String CART_EXTRA = "com.benjamin.mahshop.extra.CART";
+    public final String SHIPPING_EXTRA = "com.benjamin.mahshop.extra.SHIPPING";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,13 +102,13 @@ public class MenuActivity extends AppCompatActivity {
                 Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
 
         // Retrieve recycler view
-        RecyclerView rc = findViewById(R.id.itemRecyclerView);
+        RecyclerView itemsRC = findViewById(R.id.itemRecyclerView);
         // Create adapter
         ProductAdapter pa = new ProductAdapter(this, listOfItems, cart);
         // Connect adapter to RecyclerView
-        rc.setAdapter(pa);
+        itemsRC.setAdapter(pa);
         // Set layout manager
-        rc.setLayoutManager(new LinearLayoutManager(this));
+        itemsRC.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -149,13 +150,13 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void showShippingAlert(View view) {
         // Instantiates a new alert dialog builder
-        AlertDialog.Builder a = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
 
         // Title
-        a.setTitle("Shipping Options");
+        alertBox.setTitle(getResources().getString(R.string.title_shipping_options));
 
         // Set choices
-        a.setSingleChoiceItems(shippingOptions, -1, new DialogInterface.OnClickListener() {
+        alertBox.setSingleChoiceItems(shippingOptions, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 // Iterate through each choice
@@ -174,7 +175,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         // Options at bottom of alert
-        a.setPositiveButton("Checkout", new DialogInterface.OnClickListener() {
+        alertBox.setPositiveButton(getResources().getString(R.string.button_text_checkout), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (currentShippingCost != null) {
@@ -185,20 +186,21 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         });
-        a.setNegativeButton("Go back", new DialogInterface.OnClickListener() {
+        alertBox.setNegativeButton(getResources().getString(R.string.button_text_back), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {}
         });
 
         // Display
-        a.show();
+        alertBox.show();
     }
 
     /**
      * Displays an error message if the user did not select a shipping option
      */
     private void displayShippingErrorMsg() {
-        Toast.makeText(this, "You must select a shipping option!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.toast_need_shipping_option_msg),
+                Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -206,8 +208,8 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void openCheckoutActivity() {
         Intent checkOutActivity = new Intent(this, CheckoutActivity.class);
-        checkOutActivity.putExtra("CART", cart);
-        checkOutActivity.putExtra("SHIPPING", currentShippingCost);
+        checkOutActivity.putExtra(CART_EXTRA, cart);
+        checkOutActivity.putExtra(SHIPPING_EXTRA, currentShippingCost);
         startActivity(checkOutActivity);
     }
 
@@ -217,10 +219,10 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void displayCosts(MenuItem item) {
         // Instantiates a new alert dialog builder
-        AlertDialog.Builder a = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
 
         // Title
-        a.setTitle("Menu & options");
+        alertBox.setTitle(getResources().getString(R.string.title_menu_and_options));
 
         String itemNames = "";
         // Get names of items
@@ -230,7 +232,8 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         // Get shipping rates
-        String shippingRates = "\nShipping rates:\n";
+        String shippingRates = String.format("\n%s\n",
+                getResources().getString(R.string.header_shipping_rates));
         shippingRates += String.format("%s\n", SHIPPING_EXP_OPT);
         shippingRates += String.format("%s\n", SHIPPING_REG_OPT);
         shippingRates += String.format("%s\n", SHIPPING_NONE_OPT);
@@ -238,16 +241,17 @@ public class MenuActivity extends AppCompatActivity {
         // Get currency message
         String currencyMessage = "\n" + getResources().getString(R.string.currencyMessage);
 
-        a.setMessage(itemNames + shippingRates + currencyMessage);
+        alertBox.setMessage(itemNames + shippingRates + currencyMessage);
 
         // Options at bottom of alert
-        a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        alertBox.setPositiveButton(getResources().getString(R.string.button_text_ok), 
+                new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {}
         });
 
         // Display
-        a.show();
+        alertBox.show();
     }
 
     /**
@@ -257,13 +261,13 @@ public class MenuActivity extends AppCompatActivity {
     public void emptyCart(MenuItem item) {
         cart = new shopCart();
         // Retrieve recycler view
-        RecyclerView rc = findViewById(R.id.itemRecyclerView);
-        // Create adapter
+        RecyclerView itemsRC = findViewById(R.id.itemRecyclerView);
+        // Create brand new adapter
         ProductAdapter pa = new ProductAdapter(this, listOfItems, cart);
-        // Connect adapter to RecyclerView
-        rc.setAdapter(pa);
+        // Connect the new adapter to RecyclerView
+        itemsRC.setAdapter(pa);
         // Set layout manager
-        rc.setLayoutManager(new LinearLayoutManager(this));
+        itemsRC.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -272,10 +276,10 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void viewCurrentCart(MenuItem item) {
         // Instantiates a new alert dialog builder
-        AlertDialog.Builder a = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
 
         // Title
-        a.setTitle("Currently in cart:");
+        alertBox.setTitle(getResources().getString(R.string.title_currently_in_cart));
 
         if (cart.getNumberOfItems() != 0) {
             String itemNames = "";
@@ -285,19 +289,19 @@ public class MenuActivity extends AppCompatActivity {
                 itemNames += it.getQuantity() + " " + it.getName() + " ($" + it.getSubTotal() + ")\n";
             }
 
-            a.setMessage(itemNames);
+            alertBox.setMessage(itemNames);
         }
         else {
-            a.setMessage("Nothing in the cart\n");
+            alertBox.setMessage(getResources().getString(R.string.blank_cart_text));
         }
 
         // Options at bottom of alert
-        a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        alertBox.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {}
         });
 
         // Display
-        a.show();
+        alertBox.show();
     }
 }

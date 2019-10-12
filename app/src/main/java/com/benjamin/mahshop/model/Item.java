@@ -12,7 +12,6 @@ public class Item extends Object implements Parcelable {
     private int imageId;
     private int quantity;
     private double subTotal;
-
     private char delimiter = '-';
 
     /**
@@ -124,10 +123,9 @@ public class Item extends Object implements Parcelable {
                 + this.subTotal;
     }
 
-    /*
-        Start of parcelable implementations
-     */
-
+    /*****************************
+     * Parcelable implementation *
+     *****************************/
     /**
      * Stores item attributes in parcel object
      * @param in

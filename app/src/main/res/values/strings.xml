@@ -80,5 +80,14 @@
     <string name="tps_label">TPS:</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="currencyMessage">All prices are in CAD</string>
+    <string name="title_shipping_options">Shipping Options</string>
+    <string name="button_text_checkout">Checkout</string>
+    <string name="button_text_back">Go back</string>
+    <string name="toast_need_shipping_option_msg">You must select a shipping option!</string>
+    <string name="title_menu_and_options"><![CDATA[Menu & options]]></string>
+    <string name="header_shipping_rates">Shipping rates:</string>
+    <string name="button_text_ok">Ok</string>
+    <string name="title_currently_in_cart">Currently in cart:</string>
+    <string name="blank_cart_text">Nothing in the cart</string>
 
 </resources>

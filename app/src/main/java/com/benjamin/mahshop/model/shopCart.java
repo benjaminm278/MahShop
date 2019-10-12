@@ -46,7 +46,7 @@ public class shopCart implements Parcelable {
     }
 
     /**
-     *
+     * Decreases item by one and removes item if needed
      */
     public void decreaseItemCount(Item i) {
         i.decreaseQuantityByOne();
@@ -60,7 +60,7 @@ public class shopCart implements Parcelable {
     }
 
     /**
-     *
+     * Returns the grand subtotal of the items in cart
      * @return
      */
     public double getTotal() {
@@ -68,7 +68,7 @@ public class shopCart implements Parcelable {
     }
 
     /**
-     *
+     * Checks if an item is in the shopping cart based on the item's name
      * @param name
      * @return
      */
@@ -91,6 +91,11 @@ public class shopCart implements Parcelable {
         return -1;
     }
 
+    /**
+     * Returns the item based on index
+     * @param index
+     * @return
+     */
     public Item getItem(int index) {
         return items.get(index);
     }
@@ -108,17 +113,17 @@ public class shopCart implements Parcelable {
         return items.get(index).toString();
     }
 
+    /**
+     * Returns the size of shopping cart
+     * @return
+     */
     public int getNumberOfItems() {
         return items.size();
     }
 
-    /**********************
-     * Parcelable methods *
-     **********************/
-    /**
-     *
-     * @param in
-     */
+    /*****************************
+     * Parcelable implementation *
+     *****************************/
     protected shopCart(Parcel in) {
         grandSubtotal = in.readDouble();
         items = in.readArrayList(Item.class.getClassLoader());

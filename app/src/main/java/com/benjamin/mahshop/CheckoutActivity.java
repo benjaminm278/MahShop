@@ -28,6 +28,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private Double shippingCost;
     private shopCart cart;
     private DecimalFormat df = new DecimalFormat("#,###.##");
+    public final String CART_EXTRA = "com.benjamin.mahshop.extra.CART";
+    public final String SHIPPING_EXTRA = "com.benjamin.mahshop.extra.SHIPPING";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Retrieve previous activity (menu) and its passed data
         Bundle menuIntentExtras = getIntent().getExtras();
-        cart = menuIntentExtras.getParcelable("CART");
-        shippingCost = (Double) menuIntentExtras.get("SHIPPING");
-
-        //cart = menuIntent.getParcelableExtra("CART");
+        cart = menuIntentExtras.getParcelable(CART_EXTRA);
+        shippingCost = (Double) menuIntentExtras.get(SHIPPING_EXTRA);
 
         // Fill bill contents
         writeBill();
@@ -66,38 +66,37 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView quantity_table_cell = new TextView(this);
             TextView subtotal_table_cell = new TextView(this);
 
-            // Fills textviews
+            // Fills TextViews
             item_name_table_cell.setText(item.getName()); // Item name
             unit_price_table_cell.setText(getString(R.string.dollar_sign) + df.format(item.getPrice())); // Unit price
             quantity_table_cell.setText(item.getQuantity() + ""); // Quantity
             subtotal_table_cell.setText(getString(R.string.dollar_sign) + df.format(item.getSubTotal())); // Subtotal
 
-            TextView t = (TextView) findViewById(R.id.item_textview);
-            LinearLayout.LayoutParams x = (LinearLayout.LayoutParams) t.getLayoutParams();
-            item_name_table_cell.setLayoutParams(x);
-
-            TextView t2 = (TextView) findViewById(R.id.unit_price_textview);
-            LinearLayout.LayoutParams x2 = (LinearLayout.LayoutParams) t2.getLayoutParams();
-            unit_price_table_cell.setLayoutParams(x2);
-
-            TextView t3 = (TextView) findViewById(R.id.quantity_textview);
-            LinearLayout.LayoutParams x3 = (LinearLayout.LayoutParams) t3.getLayoutParams();
-            quantity_table_cell.setLayoutParams(x3);
-
-            TextView t4 = (TextView) findViewById(R.id.cost_textview);
-            LinearLayout.LayoutParams x4 = (LinearLayout.LayoutParams) t4.getLayoutParams();
-            subtotal_table_cell.setLayoutParams(x4);
+            // Sets layout parameters for TextView cells
+            setLayoutOfTextView((TextView) findViewById(R.id.item_textview), item_name_table_cell);
+            setLayoutOfTextView((TextView) findViewById(R.id.unit_price_textview), unit_price_table_cell);
+            setLayoutOfTextView((TextView) findViewById(R.id.quantity_textview), quantity_table_cell);
+            setLayoutOfTextView((TextView) findViewById(R.id.cost_textview), subtotal_table_cell);
 
             // Adds table cells to row
             tr.addView(item_name_table_cell);
             tr.addView(unit_price_table_cell);
             tr.addView(quantity_table_cell);
             tr.addView(subtotal_table_cell);
-            tr.setWeightSum(1.0f);
 
             // Add table row to bill
             billLayout.addView(tr);
         }
+    }
+
+    /**
+     * Makes a text view have the say layout parameters as the header
+     * @param header
+     * @param textViewCell
+     */
+    private void setLayoutOfTextView(TextView header, TextView textViewCell) {
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) header.getLayoutParams();
+        textViewCell.setLayoutParams(lp);
     }
 
     /**
