@@ -15,7 +15,7 @@ The action menu contains the bill icon which lets the user view a summary of wha
 When trying to view the items they've added into the cart, it often requires scrolling up, down, left, right, you name it. Scrolling all over the place to check and keep track of items can be a real pain (although your finger will get a good workout!). Say bye-bye to constant scrolling and say hello to the <b>view bill</b> feature. Just click the bill icon on the action bar and you will get an overview of the items that are currently in the cart! You will be able to see all of the items along with the amount of that item and the subtotal. Easy, fast and simple! (One reason to use this menu feature on the action menu).
 
 <b>List menu</b><br>
-The list menu contains two options: Costs and empty cart
+The list menu contains two options: Costs and empty cart<br>
 The costs option in the list menu lets you see a summary of all the costs and rates in the shopping application. The summary has a condensed menu of items and their prices, along with shipping rates. All the information is in one place! (Better than scrolling down through the RecyclerView to see the price of each and every item).
 <br><br>
 The empty cart option lets you clear everything from the cart. Don't know what you put in your cart and you forgot? No worries! Your cart can be cleared up for you so you can shop on a new peace of mind (more convenient than having to reset the quantity count of each item manually)!
