@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.benjamin.mahshop.model.Item;
 import com.benjamin.mahshop.model.shopCart;
 
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -63,11 +64,12 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView quantity_table_cell = new TextView(this);
             TextView subtotal_table_cell = new TextView(this);
 
+            DecimalFormat df = new DecimalFormat("#,###.##");
             // Fills textviews
             item_name_table_cell.setText(item.getName()); // Item name
-            unit_price_table_cell.setText(getString(R.string.dollar_sign) + item.getPrice()); // Unit price
+            unit_price_table_cell.setText(getString(R.string.dollar_sign) + df.format(item.getPrice())); // Unit price
             quantity_table_cell.setText(item.getQuantity() + ""); // Quantity
-            subtotal_table_cell.setText(getString(R.string.dollar_sign) + item.getSubTotal()); // Subtotal
+            subtotal_table_cell.setText(getString(R.string.dollar_sign) + df.format(item.getSubTotal())); // Subtotal
 
             // Adds table cells to row
             tr.addView(item_name_table_cell);
