@@ -54,24 +54,7 @@ public class shopCart implements Parcelable {
             // Remove from list
             items.remove(i);
         }
-        /*
-        Item i = new Item(name, price, quantity);
 
-        if (items.contains(i)) {
-            // Item exists
-            // Decrease count and price
-            quantity--;
-
-            // Checks quantity
-            if (quantity > 0) {
-                // Item stays in cart
-                items.get(items.indexOf(i)).setQuantity(quantity);
-            }
-            else {
-                items.remove(i);
-            }
-        }
-*/
         grandSubtotal -= i.getPrice();
     }
 
@@ -80,7 +63,7 @@ public class shopCart implements Parcelable {
     }
 
     public boolean contains(String name) {
-        return indexOf(name) != -1;
+        return indexOf(name) != -1; // Method below
     }
 
     public int indexOf(String name) {

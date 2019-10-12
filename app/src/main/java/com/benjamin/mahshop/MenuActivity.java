@@ -41,6 +41,10 @@ public class MenuActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (savedInstanceState != null) {
+            cart = savedInstanceState.getParcelable("OUTSTATE_CART");
+        }
+
         try {
             // Add items to list
             listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
@@ -76,6 +80,18 @@ public class MenuActivity extends AppCompatActivity {
         rc.setLayoutManager(new LinearLayoutManager(this));
 
         Log.d("toasty", pa.getItemCount() + "");
+    }
+
+    /**
+     *
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Place data
+        outState.putParcelable("OUTSTATE_CART", cart);
     }
 
     /**

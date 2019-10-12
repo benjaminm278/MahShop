@@ -64,8 +64,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.nameTxt.setText(x.getName());
         holder.priceTxt.setText(String.format("$%s", Double.toString(x.getPrice())));
         holder.descriptionTxt.setText(x.getDescription());
-        holder.quantityTxt.setText(x.getQuantity() + "");
-        holder.subTotalTxt.setText(String.format("$%.2f", x.getSubTotal()));
+
+        int quantity = 0;
+        Double subTotal = 0.00;
+        if (cart.contains(x.getName())) {
+            quantity = cart.getItemWithMenuIndex(position).getQuantity();
+            subTotal = x.getSubTotal();
+        }
+
+        holder.quantityTxt.setText(quantity + ""); // Check
+        holder.subTotalTxt.setText(String.format("$%.2f", subTotal)); // Check
     }
 
     /**
