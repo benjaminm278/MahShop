@@ -1,11 +1,13 @@
 package com.benjamin.mahshop;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.benjamin.mahshop.model.Item;
 import com.benjamin.mahshop.model.shopCart;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +24,7 @@ import java.util.LinkedList;
 
 public class MenuActivity extends AppCompatActivity {
     private LinkedList<Item> listOfItems = new LinkedList();
-    private Double currentShippingCost = null;
+    private Double currentShippingCost;
     private final Double EXPRESS_COST = 50.00;
     private final Double REGULAR_COST = 10.00;
     private final Double NO_HURRY_COST = 0.00;
@@ -76,11 +78,6 @@ public class MenuActivity extends AppCompatActivity {
         rc.setAdapter(pa);
         // Set layout manager
         rc.setLayoutManager(new LinearLayoutManager(this));
-        /*RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams
-                (RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-        rc.setLayoutParams(rllp);
-        */Log.d("toasty", pa.getItemCount() + "");
     }
 
     /**
@@ -121,7 +118,6 @@ public class MenuActivity extends AppCompatActivity {
      * @param view
      */
     public void showShippingAlert(View view) {
-        /*
         // Instantiates a new alert dialog builder
         AlertDialog.Builder a = new AlertDialog.Builder(this);
 
@@ -164,8 +160,7 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         // Display
-        a.show();*/
-        this.recreate();
+        a.show();
     }
 
     /**
@@ -176,5 +171,29 @@ public class MenuActivity extends AppCompatActivity {
         checkOutActivity.putExtra("CART", cart);
         checkOutActivity.putExtra("SHIPPING", currentShippingCost);
         startActivity(checkOutActivity);
+    }
+
+    /**
+     * Displays the cost
+     * @param item
+     */
+    public void displayCosts(MenuItem item) {
+
+    }
+
+    /**
+     * Empties the cart
+     * @param item
+     */
+    public void emptyCart(MenuItem item) {
+        cart = new shopCart();
+        // Retrieve recycler view
+        RecyclerView rc = findViewById(R.id.itemRecyclerView);
+        // Create adapter
+        ProductAdapter pa = new ProductAdapter(this, listOfItems, cart);
+        // Connect adapter to RecyclerView
+        rc.setAdapter(pa);
+        // Set layout manager
+        rc.setLayoutManager(new LinearLayoutManager(this));
     }
 }
