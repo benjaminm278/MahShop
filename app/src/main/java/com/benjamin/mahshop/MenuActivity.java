@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,38 +39,8 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-*/
-        Log.d("test", "here");
 
-        try {/*
-            cart.addItem(new Item(getResources().getString(R.string.name1), // Title
-                    getResources().getString(R.string.description1), // Description
-                    Double.parseDouble(getResources().getString(R.string.price1)), // Price
-                    R.drawable.bentoboxsushi, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
-                    0));
-            cart.addItem(new Item(getResources().getString(R.string.name2), // Title
-                    getResources().getString(R.string.description2), // Description
-                    Double.parseDouble(getResources().getString(R.string.price2)), // Price
-                    R.drawable.dragonsushiroll, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
-                    1));
-            cart.addItem(new Item(getResources().getString(R.string.name3), // Title
-                    getResources().getString(R.string.description3), // Description
-                    Double.parseDouble(getResources().getString(R.string.price3)), // Price
-                    R.drawable.spicyandsoursoup, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
-                    2));
-            */
+        try {
             // Add items to list
             listOfItems.add(new Item(getResources().getString(R.string.name1), // Title
                     getResources().getString(R.string.description1), // Description
@@ -103,6 +75,27 @@ public class MenuActivity extends AppCompatActivity {
         rc.setLayoutManager(new LinearLayoutManager(this));
 
         Log.d("toasty", pa.getItemCount() + "");
+    }
+
+    /**
+     * Initializes app bar stuff with menu configurations
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.food_items_menu, menu);
+        return true;
+    }
+
+    /**
+     * Processes the item clicked from one of the options in the app bar
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     /**
