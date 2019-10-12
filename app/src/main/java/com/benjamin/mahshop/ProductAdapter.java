@@ -89,7 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      * View holder class *
      *********************/
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final CardView c;
+        public final CardView card;
         public final TextView nameTxt;
         public final TextView descriptionTxt;
         public final TextView priceTxt;
@@ -107,17 +107,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public ProductViewHolder(@NonNull View itemView, ProductAdapter adapter) {
             super(itemView);
             // Define views
-            c = itemView.findViewById(R.id.ItemCardView);
-            nameTxt = c.findViewById(R.id.name_text);
-            descriptionTxt = c.findViewById(R.id.description_text);
-            priceTxt = c.findViewById(R.id.price_text);
-            itemImg = c.findViewById(R.id.imageView);
-            quantityTxt = c.findViewById(R.id.quantity_text);
-            subTotalTxt = c.findViewById(R.id.subtotal_text);
+            card = itemView.findViewById(R.id.ItemCardView);
+            nameTxt = card.findViewById(R.id.name_text);
+            descriptionTxt = card.findViewById(R.id.description_text);
+            priceTxt = card.findViewById(R.id.price_text);
+            itemImg = card.findViewById(R.id.imageView);
+            quantityTxt = card.findViewById(R.id.quantity_text);
+            subTotalTxt = card.findViewById(R.id.subtotal_text);
             this.mAdapter = adapter;
 
-            incrementBtn = c.findViewById(R.id.increment_button);
-            decrementBtn = c.findViewById(R.id.decrement_button);
+            incrementBtn = card.findViewById(R.id.increment_button);
+            decrementBtn = card.findViewById(R.id.decrement_button);
 
             // Sets on click listeners
             incrementBtn.setOnClickListener(this);
@@ -137,12 +137,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 changeSubtotal(item);
                 // Log message as requested in Part V of assignment 2
                 Log.d("ItemStatus", "Item count increased: " + item.getName() + " $" + item.getPrice());
+                Log.d("ItemStatus", "" + item.getQuantity());
             }
             else if (btnId == decrementBtn.getId()) {
                 decrementQuantity(item);
                 changeSubtotal(item);
                 // Log message as requested in Part V of assignment 2
                 Log.d("ItemStatus", "Item count decreased: " + item.getName() + " $" + item.getPrice());
+                Log.d("ItemStatus", "" + item.getQuantity());
             }
         }
 

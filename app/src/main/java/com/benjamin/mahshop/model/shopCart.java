@@ -37,6 +37,7 @@ public class shopCart implements Parcelable {
         // Item doesn't exist?
         if (!found) {
             // Adds new item to cart with new quantity
+            i.increaseQuantityByOne();
             items.add(i);
         }
 
@@ -87,7 +88,6 @@ public class shopCart implements Parcelable {
                 return i;
             }
         }
-
         return -1;
     }
 
