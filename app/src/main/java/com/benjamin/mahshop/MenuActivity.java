@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 
@@ -178,7 +179,38 @@ public class MenuActivity extends AppCompatActivity {
      * @param item
      */
     public void displayCosts(MenuItem item) {
+        // Instantiates a new alert dialog builder
+        AlertDialog.Builder a = new AlertDialog.Builder(this);
 
+        // Title
+        a.setTitle("Menu & options");
+
+        String itemNames = "";
+        // Get names of items
+        for (int i = 0; i < listOfItems.size(); i++) {
+            Item it = listOfItems.get(i);
+            itemNames += it.getName() + " ($" + it.getPrice() + ")\n";
+        }
+
+        // Get shipping rates
+        String shippingRates = "\nShipping rates:\n";
+        shippingRates += String.format("%s\n", SHIPPING_EXP_OPT);
+        shippingRates += String.format("%s\n", SHIPPING_REG_OPT);
+        shippingRates += String.format("%s\n", SHIPPING_NONE_OPT);
+
+        // Get currency message
+        String currencyMessage = "\n" + getResources().getString(R.string.currencyMessage);
+
+        a.setMessage(itemNames + shippingRates + currencyMessage);
+
+        // Options at bottom of alert
+        a.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
+        });
+
+        // Display
+        a.show();
     }
 
     /**

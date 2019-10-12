@@ -43,5 +43,6 @@
     <string name="tpq_label">TPQ:</string>
     <string name="tps_label">TPS:</string>
     <string name="title_activity_menu">MenuActivity</string>
+    <string name="currencyMessage">All prices are in CAD</string>
 
 </resources>
