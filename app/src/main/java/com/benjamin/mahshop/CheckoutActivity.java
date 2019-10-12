@@ -52,7 +52,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Iterates for each row
         for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
-            String[] itemData = cart.getItemWithMenuIndex(itemIndex).toString().split("-");
+            Item item = cart.getItem(itemIndex);
+
             // Creates new table row
             TableRow tr = new TableRow(this);
 
@@ -63,10 +64,10 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView subtotal_table_cell = new TextView(this);
 
             // Fills textviews
-            item_name_table_cell.setText(itemData[0]); // Item name
-            unit_price_table_cell.setText(getString(R.string.dollar_sign) + itemData[1]); // Unit price
-            quantity_table_cell.setText(itemData[2]); // Quantity
-            subtotal_table_cell.setText(getString(R.string.dollar_sign) + itemData[3]); // Subtotal
+            item_name_table_cell.setText(item.getName()); // Item name
+            unit_price_table_cell.setText(getString(R.string.dollar_sign) + item.getPrice()); // Unit price
+            quantity_table_cell.setText(item.getQuantity() + ""); // Quantity
+            subtotal_table_cell.setText(getString(R.string.dollar_sign) + item.getSubTotal()); // Subtotal
 
             // Adds table cells to row
             tr.addView(item_name_table_cell);

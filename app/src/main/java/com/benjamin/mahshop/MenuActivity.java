@@ -52,20 +52,17 @@ public class MenuActivity extends AppCompatActivity {
                     getResources().getString(R.string.description1), // Description
                     Double.parseDouble(getResources().getString(R.string.price1)), // Price
                     R.drawable.bentoboxsushi, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
-                    listOfItems.size())); // Quantity
+                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
             listOfItems.add(new Item(getResources().getString(R.string.name2), // Title
                     getResources().getString(R.string.description2), // Description
                     Double.parseDouble(getResources().getString(R.string.price2)), // Price
                     R.drawable.dragonsushiroll, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
-                    listOfItems.size())); // Quantity
+                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
             listOfItems.add(new Item(getResources().getString(R.string.name3), // Title
                     getResources().getString(R.string.description3), // Description
                     Double.parseDouble(getResources().getString(R.string.price3)), // Price
                     R.drawable.spicyandsoursoup, // Image link
-                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)),
-                    listOfItems.size())); // Quantity
+                    Integer.parseInt(getResources().getString(R.string.quantity_default_value)))); // Quantity
         }
         catch (Exception e) {
             Log.d("test", "here2");

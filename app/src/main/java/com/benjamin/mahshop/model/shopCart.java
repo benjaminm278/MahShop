@@ -91,20 +91,6 @@ public class shopCart implements Parcelable {
         return -1;
     }
 
-    /**
-     *
-     * @param index
-     * @return
-     */
-    public Item getItemWithMenuIndex(int index) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getMenuIndex() == index) {
-                return items.get(i);
-            }
-        }
-        return null;
-    }
-
     public Item getItem(int index) {
         return items.get(index);
     }

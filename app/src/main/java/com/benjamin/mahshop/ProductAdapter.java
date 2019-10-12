@@ -22,16 +22,16 @@ import java.util.LinkedList;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private LinkedList<Item> mListOfItems;
     private LayoutInflater mInflater;
-    private shopCart cart;
+    private shopCart mCart;
 
     /**
      * Creates an adapter by setting the layout inflater and list of items
      * @param ctx
      */
-    public ProductAdapter(Context ctx, LinkedList<Item> listOfItems, shopCart c) {
+    public ProductAdapter(Context ctx, LinkedList<Item> listOfItems, shopCart cart) {
         mInflater = LayoutInflater.from(ctx); // Inflates adapter
         this.mListOfItems = listOfItems; // Gets list of items
-        this.cart = c;
+        this.mCart = cart;
     }
 
     /**
@@ -67,9 +67,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         int quantity = 0;
         Double subTotal = 0.00;
-        if (cart.contains(x.getName())) {
-            quantity = cart.getItemWithMenuIndex(position).getQuantity();
-            subTotal = cart.getItemWithMenuIndex(position).getSubTotal();
+        if (mCart.contains(x.getName())) {
+            quantity = mCart.getItem(mCart.indexOf(x.getName())).getQuantity();
+            subTotal = mCart.getItem(mCart.indexOf(x.getName())).getSubTotal();
         }
 
         holder.quantityTxt.setText(quantity + ""); // Check
@@ -100,7 +100,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public final Button decrementBtn;
         final ProductAdapter mAdapter;
         /**
-         * Creates
+         * Creates a view holder for an item
          * @param itemView
          * @param adapter
          */
@@ -126,26 +126,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         @Override
         public void onClick(View v) {
-            Log.d("Abc123", v.getId() + " Success!!!");
+            // Variable declaration
+            int btnId = v.getId(); // id of this button
+            int positionOfCard = getLayoutPosition(); // position of this card
+            Item item = mListOfItems.get(positionOfCard); // gets item from the list of items
 
-            int btnId = v.getId();
-            int y = getLayoutPosition();
-            Item a = mListOfItems.get(y);
-            //Item a = cart.getItemWithMenuIndex(y);
             // Checks which button was pressed
             if (btnId == incrementBtn.getId()) {
-                incrementQuantity(a);
-                changeSubtotal(a);
+                incrementQuantity(item);
+                changeSubtotal(item);
+                // Log message as requested in Part V of assignment 2
+                Log.d("ItemStatus", "Item count increased: " + item.getName() + " $" + item.getPrice());
             }
             else if (btnId == decrementBtn.getId()) {
-                decrementQuantity(a);
-                changeSubtotal(a);
+                decrementQuantity(item);
+                changeSubtotal(item);
+                // Log message as requested in Part V of assignment 2
+                Log.d("ItemStatus", "Item count decreased: " + item.getName() + " $" + item.getPrice());
             }
         }
 
         public void incrementQuantity(Item item) {
             // Add item to cart
-            cart.addItem(item);
+            mCart.addItem(item);
 
             // Update quantity display
             quantityTxt.setText(item.getQuantity() + "");
@@ -157,8 +160,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         public void decrementQuantity(Item item) {
-            cart.decreaseItemCount(item);
-            //item.decreaseQuantityByOne();
+            mCart.decreaseItemCount(item);
             quantityTxt.setText(item.getQuantity() + "");
         }
     }
