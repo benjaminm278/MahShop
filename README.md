@@ -24,4 +24,4 @@ The empty cart option lets you clear everything from the cart. Don't know what y
 I have used [PurpleBooth's README Template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) as a guide to construct this README file.
 
 ## License
-This projected is licensed under the terms of BSD-2-Clause. See the [LICENSE.md] (https://github.com/benjaminm278/MahShop/blob/master/LICENSE) file for more details.
+This projected is licensed under the terms of BSD-2-Clause. See the [LICENSE.md](https://github.com/benjaminm278/MahShop/blob/master/LICENSE) file for more details.
