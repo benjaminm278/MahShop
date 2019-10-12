@@ -71,8 +71,8 @@ public class shopCart implements Parcelable {
                 items.remove(i);
             }
         }
-
-        grandSubtotal -= price;*/
+*/
+        grandSubtotal -= i.getPrice();
     }
 
     public double getTotal() {
@@ -94,8 +94,13 @@ public class shopCart implements Parcelable {
         return -1;
     }
 
-    public Item getItemByMenuIndex(int index) {
-        return items.get(index);
+    public Item getItemWithMenuIndex(int index) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getMenuIndex() == index) {
+                return items.get(i);
+            }
+        }
+        return null;
     }
     /**
      * Retrieves an item string at a given index

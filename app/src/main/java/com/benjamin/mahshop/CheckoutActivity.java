@@ -51,7 +51,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Iterates for each row
         for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {
-            String[] itemData = cart.getItemByMenuIndex(itemIndex).toString().split("-");
+            String[] itemData = cart.getItemWithMenuIndex(itemIndex).toString().split("-");
             // Creates new table row
             TableRow tr = new TableRow(this);
 

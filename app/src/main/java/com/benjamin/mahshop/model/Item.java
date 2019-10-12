@@ -56,7 +56,6 @@ public class Item extends Object implements Parcelable {
     }
 
     public void increaseQuantityByOne() {
-        Log.d("incre", "here");
         quantity++;
     }
 
@@ -74,6 +73,10 @@ public class Item extends Object implements Parcelable {
         return this.name;
     }
 
+    /**
+     * Returns name of description
+     * @return
+     */
     public String getDescription() {
         return this.description;
     }
@@ -92,6 +95,10 @@ public class Item extends Object implements Parcelable {
 
     public double getSubTotal() {
         return this.quantity * this.price;
+    }
+
+    public int getMenuIndex() {
+        return this.menuIndex;
     }
 
     /**

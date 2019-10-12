@@ -20,7 +20,7 @@ import com.benjamin.mahshop.model.shopCart;
 import java.util.LinkedList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
-    //private LinkedList<Item> mListOfItems;
+    private LinkedList<Item> mListOfItems;
     private LayoutInflater mInflater;
     private shopCart cart;
 
@@ -28,9 +28,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      * Creates an adapter by setting the layout inflater and list of items
      * @param ctx
      */
-    public ProductAdapter(Context ctx, shopCart c) {
+    public ProductAdapter(Context ctx, LinkedList<Item> listOfItems, shopCart c) {
         mInflater = LayoutInflater.from(ctx); // Inflates adapter
-        //this.mListOfItems = listOfItems; // Gets list of items
+        this.mListOfItems = listOfItems; // Gets list of items
         this.cart = c;
     }
 
@@ -58,8 +58,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      */
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
-        //Item x = mListOfItems.get(position);
-        Item x = cart.getItemByMenuIndex(position);
+        Item x = mListOfItems.get(position);
+        //Item x = cart.getItemByMenuIndex(position);
         holder.itemImg.setBackgroundResource(x.getImageId());
         holder.nameTxt.setText(x.getName());
         holder.priceTxt.setText(String.format("$%s", Double.toString(x.getPrice())));
@@ -74,7 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      */
     @Override
     public int getItemCount() {
-        return cart.getNumberOfItems();
+        return mListOfItems.size();
     }
 
     /*********************
@@ -98,6 +98,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
          */
         public ProductViewHolder(@NonNull View itemView, ProductAdapter adapter) {
             super(itemView);
+            // Define views
             c = itemView.findViewById(R.id.ItemCardView);
             nameTxt = c.findViewById(R.id.name_text);
             descriptionTxt = c.findViewById(R.id.description_text);
@@ -122,7 +123,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             int btnId = v.getId();
             int y = getLayoutPosition();
             //Item a = mListOfItems.get(y);
-            Item a = cart.getItemByMenuIndex(y);
+            Item a = cart.getItemWithMenuIndex(y);
             // Checks which button was pressed
             if (btnId == incrementBtn.getId()) {
                 incrementQuantity(a);
@@ -135,8 +136,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         public void incrementQuantity(Item item) {
-            // Update internally
-            item.increaseQuantityByOne();
+            // Add item to cart
+            cart.addItem(item);
 
             // Update quantity display
             quantityTxt.setText(item.getQuantity() + "");
@@ -148,7 +149,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         public void decrementQuantity(Item item) {
-            item.decreaseQuantityByOne();
+            cart.decreaseItemCount(item);
+            //item.decreaseQuantityByOne();
             quantityTxt.setText(item.getQuantity() + "");
         }
     }
