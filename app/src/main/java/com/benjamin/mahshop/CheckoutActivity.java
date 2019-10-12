@@ -3,6 +3,8 @@ package com.benjamin.mahshop;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private double total;
     private Double shippingCost;
     private shopCart cart;
+    private DecimalFormat df = new DecimalFormat("#,###.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +67,34 @@ public class CheckoutActivity extends AppCompatActivity {
             TextView quantity_table_cell = new TextView(this);
             TextView subtotal_table_cell = new TextView(this);
 
-            DecimalFormat df = new DecimalFormat("#,###.##");
             // Fills textviews
             item_name_table_cell.setText(item.getName()); // Item name
             unit_price_table_cell.setText(getString(R.string.dollar_sign) + df.format(item.getPrice())); // Unit price
             quantity_table_cell.setText(item.getQuantity() + ""); // Quantity
             subtotal_table_cell.setText(getString(R.string.dollar_sign) + df.format(item.getSubTotal())); // Subtotal
 
+            TextView t = (TextView) findViewById(R.id.item_textview);
+            LinearLayout.LayoutParams x = (LinearLayout.LayoutParams) t.getLayoutParams();
+            item_name_table_cell.setLayoutParams(x);
+
+            TextView t2 = (TextView) findViewById(R.id.unit_price_textview);
+            LinearLayout.LayoutParams x2 = (LinearLayout.LayoutParams) t2.getLayoutParams();
+            unit_price_table_cell.setLayoutParams(x2);
+
+            TextView t3 = (TextView) findViewById(R.id.quantity_textview);
+            LinearLayout.LayoutParams x3 = (LinearLayout.LayoutParams) t3.getLayoutParams();
+            quantity_table_cell.setLayoutParams(x3);
+
+            TextView t4 = (TextView) findViewById(R.id.cost_textview);
+            LinearLayout.LayoutParams x4 = (LinearLayout.LayoutParams) t4.getLayoutParams();
+            subtotal_table_cell.setLayoutParams(x4);
+
             // Adds table cells to row
             tr.addView(item_name_table_cell);
             tr.addView(unit_price_table_cell);
             tr.addView(quantity_table_cell);
             tr.addView(subtotal_table_cell);
+            tr.setWeightSum(1.0f);
 
             // Add table row to bill
             billLayout.addView(tr);
