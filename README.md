@@ -1,13 +1,13 @@
 # MahShop
 This project contains a developed shopping application. It is a shopping simulation which allows you to purchase foods in quantities you wish to have. Once done shopping, you may checkout and view what's in your cart.
 
-### Overview
+## Overview
 The menu contains a beautiful selection of Asian cuisine (WARNING: App contains extremely delicious food!). Pick a few and add them to your cart in just a click! When you're done ordering, select a shipping option and head to checkout. You'll be able to see a summary of what you've put in your shopping cart. Shopping has never been made easier!
 
-### Development tools
+## Development tools
 I have heavily used the Pixel 2 phone (API 28) when developping the shopping application. However, it's been optimized to fit on other phones. I used the Nexus S phone (API 28) to test for optimization.
 
-### Menus
+## Menus
 This application contains two menus: the action menu and the list menu.
 
 <b>Action menu</b><br>
@@ -20,8 +20,8 @@ The costs option in the list menu lets you see a summary of all the costs and ra
 <br><br>
 The empty cart option lets you clear everything from the cart. Don't know what you put in your cart and you forgot? No worries! Your cart can be cleared up for you so you can shop on a new peace of mind (more convenient than having to reset the quantity count of each item manually)!
 
-### Acknowledgements
+## Acknowledgements
 I have used [PurpleBooth's README Template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) as a guide to construct this README file.
 
-### License
+## License
 This projected is licensed under the terms of BSD-2-Clause. See the [LICENSE.md] (https://github.com/benjaminm278/MahShop/blob/master/LICENSE) file for more details.
