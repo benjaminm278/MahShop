@@ -52,7 +52,6 @@ public class CheckoutActivity extends AppCompatActivity {
     public void writeBill() {
         // Retrieve all necessary variables
         billLayout = findViewById(R.id.billTable);
-        //menuIntent = getIntent();
 
         // Iterates for each row
         for (int itemIndex = 0; itemIndex < cart.getNumberOfItems(); itemIndex++) {

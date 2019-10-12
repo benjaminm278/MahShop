@@ -75,7 +75,7 @@
                     android:layout_below="@+id/description_text"
                     android:layout_alignStart="@+id/name_text"
                     android:layout_marginStart="0dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="12dp"
                     android:text="@string/quantity_label" />
 
                 <Button
@@ -105,24 +105,23 @@
 
                 <TextView
                     android:id="@+id/subtotal_label"
-                    android:layout_width="67dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/quantity_label"
                     android:layout_alignBottom="@+id/quantity_label"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="150dp"
+                    android:layout_marginStart="239dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="0dp"
-                    android:layout_toEndOf="@+id/quantity_text"
                     android:text="@string/subtotal_label" />
 
                 <TextView
                     android:id="@+id/subtotal_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/subtotal_label"
                     android:layout_alignEnd="@+id/description_text"
-                    android:layout_alignBottom="@+id/quantity_label"
+                    android:layout_alignBottom="@+id/subtotal_label"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"

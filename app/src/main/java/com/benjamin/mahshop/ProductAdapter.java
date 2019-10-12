@@ -59,7 +59,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
         Item x = mListOfItems.get(position);
-        //Item x = cart.getItemByMenuIndex(position);
         holder.itemImg.setBackgroundResource(x.getImageId());
         holder.nameTxt.setText(x.getName());
         holder.priceTxt.setText(String.format("$%s", Double.toString(x.getPrice())));
@@ -137,14 +136,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 changeSubtotal(item);
                 // Log message as requested in Part V of assignment 2
                 Log.d("ItemStatus", "Item count increased: " + item.getName() + " $" + item.getPrice());
-                Log.d("ItemStatus", "" + item.getQuantity());
             }
             else if (btnId == decrementBtn.getId()) {
                 decrementQuantity(item);
                 changeSubtotal(item);
                 // Log message as requested in Part V of assignment 2
                 Log.d("ItemStatus", "Item count decreased: " + item.getName() + " $" + item.getPrice());
-                Log.d("ItemStatus", "" + item.getQuantity());
             }
         }
 

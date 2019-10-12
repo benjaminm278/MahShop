@@ -12,12 +12,11 @@ public class Item extends Object implements Parcelable {
     private int imageId;
     private int quantity;
     private double subTotal;
-    private int menuIndex;
 
     private char delimiter = '-';
 
     /**
-     *
+     * Creates an item
      * @param name
      * @param description
      * @param price
@@ -33,19 +32,15 @@ public class Item extends Object implements Parcelable {
     }
 
     /**
-     * Updates or sets quantity
-     * @param quantity
+     * Increments quantity by one
      */
-    public void setQuantity(int quantity) {
-        if (quantity > 0) {
-            this.quantity = quantity;
-        }
-    }
-
     public void increaseQuantityByOne() {
         quantity++;
     }
 
+    /**
+     * Decrements quantity by one
+     */
     public void decreaseQuantityByOne() {
         if (quantity > 0) {
             quantity--;
@@ -68,24 +63,36 @@ public class Item extends Object implements Parcelable {
         return this.description;
     }
 
+    /**
+     * Returns price
+     * @return
+     */
     public double getPrice() {
         return this.price;
     }
 
+    /**
+     * Returns image id, which is needed to reference an image
+     * @return
+     */
     public int getImageId() {
         return this.imageId;
     }
 
+    /**
+     * Returns the quantity of this item
+     * @return
+     */
     public int getQuantity() {
         return this.quantity;
     }
 
+    /**
+     * Returns the subtotal of this item
+     * @return
+     */
     public double getSubTotal() {
         return this.quantity * this.price;
-    }
-
-    public int getMenuIndex() {
-        return this.menuIndex;
     }
 
     /**

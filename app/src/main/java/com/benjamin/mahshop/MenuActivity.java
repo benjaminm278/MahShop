@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -179,6 +180,9 @@ public class MenuActivity extends AppCompatActivity {
                 if (currentShippingCost != null) {
                     openCheckoutActivity();
                 }
+                else if (currentShippingCost == null) {
+                    displayShippingErrorMsg();
+                }
             }
         });
         a.setNegativeButton("Go back", new DialogInterface.OnClickListener() {
@@ -188,6 +192,13 @@ public class MenuActivity extends AppCompatActivity {
 
         // Display
         a.show();
+    }
+
+    /**
+     * Displays an error message if the user did not select a shipping option
+     */
+    private void displayShippingErrorMsg() {
+        Toast.makeText(this, "You must select a shipping option!", Toast.LENGTH_SHORT).show();
     }
 
     /**
