@@ -161,6 +161,7 @@ public class MenuActivity extends AppCompatActivity {
     public void openCheckoutActivity() {
         Intent checkOutActivity = new Intent(this, CheckoutActivity.class);
         checkOutActivity.putExtra("CART", cart);
+        checkOutActivity.putExtra("SHIPPING", currentShippingCost);
         startActivity(checkOutActivity);
     }
 }
