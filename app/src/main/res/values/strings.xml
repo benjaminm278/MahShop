@@ -32,39 +32,40 @@
         extremely spicy taste. Yet, it has rich flavours.</string>
 
     <string name="name4">Egg rolls</string>
-    <string name="price4">9.99</string>
-    <string name="description4">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price4">3.99</string>
+    <string name="description4">Homemade eggrolls using only the finest and freshest ingredients.
+    Each bite gives a crunchy and savoury taste. The perfect harmony of ingredients!</string>
 
     <string name="name5">Fried Rice</string>
-    <string name="price5">9.99</string>
-    <string name="description5">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price5">8.99</string>
+    <string name="description5">Rice cooked with perfection! It is fried and mixed with a variety
+    of fresh vegetables and meat!</string>
 
     <string name="name6">Asian Cuisine Beef</string>
-    <string name="price6">9.99</string>
-    <string name="description6">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price6">7.59</string>
+    <string name="description6">Seasoned and cooked to perfection! The Asian Cuisine beef is
+    mouth-watering and savoury!</string>
 
     <string name="name7">Soy Noodles</string>
-    <string name="price7">9.99</string>
-    <string name="description7">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price7">6.79</string>
+    <string name="description7">Noodles coated with the finest soy sauce! Full of richness and
+    flavor! Served with fried broccoli, carrots and asparagus.</string>
 
     <string name="name8">Spicy Dumplings</string>
-    <string name="price8">9.99</string>
-    <string name="description8">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price8">8.29</string>
+    <string name="description8">Handmade fried dumplings made using the best meat and vegetables.
+    Uses wrapping made entirely from scratch. All coated in soy sauce and very hot spices!</string>
 
     <string name="name9">Spicy Noodles</string>
-    <string name="price9">9.99</string>
-    <string name="description9">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price9">10.19</string>
+    <string name="description9">Handmade noodles mixed with green pepper, onions, beef and spicy
+    chicken soup!</string>
 
     <string name="name10">Thai Sticky Rice</string>
-    <string name="price10">9.99</string>
-    <string name="description10">A spicy and yet sour taste, this soup will be sure to provide an
-        extremely spicy taste. Yet, it has rich flavours.</string>
+    <string name="price10">12.29</string>
+    <string name="description10">Unique dish with Thai rice never seen before here! The flavors shine
+    for each bite! Complemented with eggrolls, grilled vegetables coated with our finest and special
+    sauces, and our signature sauce!</string>
 
     <string name="main_description">Enjoy shopping for food from the comfort of your own home! This is MahShop.</string>
     <string name="begin_button_text">Begin</string>
